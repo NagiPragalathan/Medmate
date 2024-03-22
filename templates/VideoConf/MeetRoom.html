@@ -1,149 +1,69 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./dist/output.css" rel="stylesheet">
-  <link href="./styles.css" rel="stylesheet">
-  <link href=
-  "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-            rel="stylesheet">
-            <link href=”https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css” rel=”stylesheet”>
-</head>
-<style>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-
-
-  .background-image {
-      background-image: url('../../securedapp/Securedapp_Front/Assets/Ellipse\ 29.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 100vh;
-      width: 100%;
-  }
-</style>
-<body class="background-image flex gap-[150px] bg-black">
-  <div class="w-[50%] mt-[80px] pl-[100px]">
-    <!-- Dynamic Questions and Options Here -->
-    <div id="quiz-container" class="mt-5 pt-[50px]">
-      <!-- JavaScript will populate questions and options here -->
-    </div>
-    <p id="see-result" class="hidden text-white font-poppins text-[23px] font-normal leading-[38.5px] mt-5">
-      See Your Result
-    </p>
-  </div>
-  <div class="w-[30%]">
-    <div id="timer" class="text-yellow-400 font-poppins text-[23px] font-normal leading-[38.5px] mb-4">
-      Time Left: <span id="time-left">120</span> seconds
-    </div>
-    <div class="mt-[200px] h-fit p-[50px] rounded-[15px] border border-white bg-opacity-54 bg-black">
-      <div id="correct-count" class="text-green-600 font-poppins text-[23px] font-normal leading-[38.5px]">
-        Correct Answers: 0
-
-      </div>
-      <div id="wrong-count" class="text-red-600 font-poppins text-[23px] font-normal leading-[38.5px]">
-        Wrong Answers: 0
-      </div>
-    </div>
-
-    <div class="w-full">
-      <img src="{% url 'video_feed' %}"  alt="raahul">
-    </div>
-  </div>
-  <script>
-     // Initialize timer variables
-    let timeLeft = 40; // 2 minutes
-    const timerElement = document.getElementById("time-left");
-    // Function to update timer display
-    function updateTimerDisplay() {
-      timerElement.innerText = timeLeft;
-    }
-    {% autoescape off %}  // Turn off HTML escaping
-    // Parse the JSON string to a JavaScriNpt object
-    const questionsJSON = "{{ questions_json|safe|escapejs }}";
-    const questions = JSON.parse(questionsJSON);
-    {% endautoescape %}
-  
-    // Debugging: log to console
-    console.log(questions);
-  
-    // Get DOM elements
-    const quizContainer = document.getElementById("quiz-container");
-    const correctCountContainer = document.getElementById("correct-count");
-    const wrongCountContainer = document.getElementById("wrong-count");
-    const seeResultText = document.getElementById("see-result");
-  
-    // Initialize quiz state variables
-    let currentQuestionIndex = 0;
-    let correctAnswers = 0;
-    let wrongAnswers = 0;
-  
-    // Function to display questions
-    function displayQuestion() {
-      if (currentQuestionIndex < questions.length) {
-        const question = questions[currentQuestionIndex];
-        quizContainer.innerHTML = `<h1 class="text-white font-sans text-[23px] font-normal leading-[38.5px]">${question.question}</h1>`;
-        const questionDiv = document.createElement("div");
-        questionDiv.classList.add("flex", "flex-col", "mt-5");
-  
-        // Display options
-        question.options.forEach((option, index) => {
-          const optionButton = document.createElement("button");
-          optionButton.classList.add("text-white", "font-poppins", "text-[23px]", "font-normal", "leading-[38.5px]", "p-[10px]", "rounded","border","w-full" ,"bg-opacity-0", "transition", "duration-300", "ease-in-out");
-          optionButton.innerText = option;
-          optionButton.addEventListener("click", () => checkAnswer(optionButton, question.answer));
-          questionDiv.appendChild(optionButton);
-        });
-  
-        quizContainer.appendChild(questionDiv);
-      } else {
-        const userConfirmed = window.confirm("Are you sure you want to Submit this quiz?");
-        if (userConfirmed) {
-          // If user confirms, redirect to another URL
-          window.location.href = `report/${questions.length}/${correctAnswers}`;
-        }
-      }
-    }
-  
-    // Function to check the answer
-    function checkAnswer(button, correctAnswer) {
-      if (button.innerText === correctAnswer) {
-        correctAnswers++;
-        correctCountContainer.innerText = `Correct Answers: ${correctAnswers}`;
-      } else {
-        wrongAnswers++;
-        wrongCountContainer.innerText = `Wrong Answers: ${wrongAnswers}`;
-      }
-  
-      // Move to the next question
-      currentQuestionIndex++;
-      displayQuestion();
-    }
-  
-    // Display the first question
-    displayQuestion();
-    // Function to handle timer countdown
-    function countdownTimer() {
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        // Redirect to another URL when time is up
-        window.location.href = `report/${questions.length}/${correctAnswers}`;
-
-      } else {
-        timeLeft--;
-        updateTimerDisplay();
-      }
-    }
-    // Start timer countdown
-  const timerInterval = setInterval(countdownTimer, 1000);
-
-
-  </script>
-  
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <title>Doctor consulting</title>
+</head>
+<body class="">
+
+    <div class="min-h-[100vh] bg-[#0F172A] flex flex-col items-center justify-center">
+        <div class="my-3 mt-5 md:mt-3">
+            <h1 class="text-3xl md:text-6xl font-bold text-[#fac13d] m-2 mb-8">Consult with your Doctor</h1>
+        </div>
+        <div class="flex flex-col md:flex-row justify-around gap-10">
+            <div class="w-[90vw] md:w-[45vw] bg-[#f4f4f4] h-[50vh] md:h-[60vh] rounded-3xl flex flex-col items-center">
+                <video id="videoStream" class="w-full h-full" autoplay></video>
+            </div>
+                
+            <img src="{% url 'video_feed' %}" class="w-[90vw] md:w-[45vw] bg-[#f4f4f4] h-[50vh] md:h-[60vh] rounded-3xl flex flex-col items-center">
+                
+            </img>
+        </div>
+        <div class="m-6">
+            <button id="endBtn" class="text-2xl bg-[#ff0000] px-6 py-2 rounded-xl flex justify-center items-center gap-2 font-semibold"> <span class="">
+                <i class="fa-solid fa-phone"></i>
+            </span> End </button>
+        </div>
+        
+    </div>
+
+    <script>
+        // Get the video element
+        const videoElement = document.getElementById('videoStream');
+
+        // Function to start the video stream
+        async function startVideoStream() {
+            try {
+                // Use getUserMedia to access the camera
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+                // Set the stream as the source for the video element
+                videoElement.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing the camera: ', err);
+            }
+        }
+
+        // Call the function to start the video stream
+        startVideoStream();
+
+        // Get the End button
+        const endBtn = document.getElementById('endBtn');
+
+        // Add click event listener to the End button
+        endBtn.addEventListener('click', function() {
+            // Stop the video stream
+            const stream = videoElement.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+
+            // Redirect to home page
+            window.location.href = 'Login.html';
+        });
+    </script>
 </body>
 </html>
