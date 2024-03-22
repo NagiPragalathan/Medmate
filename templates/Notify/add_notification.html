@@ -4,28 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .notification-list {
+            margin-bottom: 20px;
+        }
+
+        .notification-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .notification-list th, .notification-list td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .popup-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .popup-form input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .popup-form button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Add Notification</h1>
-    {% for i in datas %}
-        {{ i.tablet_name }}
-    {% endfor %}
-    <form method="post">
-        {% csrf_token %}
+    <div class="container">
+        <h1>Add Notification</h1>
+        
+        <div class="notification-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tablet Name</th>
+                        <th>Notify Time</th>
+                        <th>Quantity</th>
+                        <th>Total Tablet Quantity</th>
+                        <th>Last Updated Time</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in datas %}
+                        <tr>
+                            <td>{{ i.tablet_name }}</td>
+                            <td>{{ i.notify_time }}</td>
+                            <td>{{ i.quantity }}</td>
+                            <td>{{ i.total_tablet_quantity }}</td>
+                            <td>{{ i.last_updated_time }}</td>
+                            <td> <a href="{% url 'edit_notify' i.id %}"><button>Edit</button></a> </td>
+                            <td> <a href="{% url 'delete_notify' i.id %}"><button>Delete</button></a> </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-        <label for="notify_time">Notify Time:</label>
-        <input type="datetime-local" id="notify_time" name="notify_time"><br><br>
+        <button id="show-form-btn">Add Notification</button>
 
-        <label for="tablet_name">Tablet Name:</label>
-        <input type="text" id="tablet_name" name="tablet_name"><br><br>
+        <div id="notification-form" class="popup-form">
+            <span class="popup-close" onclick="closeForm()">X</span>
+            <form method="post">
+                {% csrf_token %}
+                <label for="notify_time">Notify Time:</label>
+                <input type="datetime-local" id="notify_time" name="notify_time"><br>
 
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity"><br><br>
+                <label for="tablet_name">Tablet Name:</label>
+                <input type="text" id="tablet_name" name="tablet_name"><br>
 
-        <label for="total_tablet_quantity">Total Tablet Quantity:</label>
-        <input type="number" id="total_tablet_quantity" name="total_tablet_quantity"><br><br>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity"><br>
 
-        <button type="submit">Add Notification</button>
-    </form>
+                <label for="total_tablet_quantity">Total Tablet Quantity:</label>
+                <input type="number" id="total_tablet_quantity" name="total_tablet_quantity"><br>
+
+                <button type="submit">Add Notification</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('show-form-btn').addEventListener('click', function() {
+            document.getElementById('notification-form').style.display = 'block';
+        });
+
+        function closeForm() {
+            document.getElementById('notification-form').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

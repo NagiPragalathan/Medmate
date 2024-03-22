@@ -12,7 +12,7 @@
     <div class="flex items-center justify-center md:w-[60vw] max-[w-80%] ">
       <img src="{% static 'imgs/login.png' %}" class=" md:px-0 px-10 mt-10" alt="">
     </div>
-    <form action="" method="post">
+    <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
 
         <div class="data sm:w-[40vw] flex flex-col items-center my-5 sm:items-start  sm:my-0 ">
