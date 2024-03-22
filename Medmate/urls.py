@@ -21,6 +21,7 @@ from base.Views.Common import *
 from base.Views.Notify import *
 from django.views.static import serve
 from Medmate import settings
+from base.Views.Ocr import *
 
 
 
@@ -46,6 +47,10 @@ Home = [
     path('', home, name='home'),
 ]
 
+Ocr = [
+    path('ocr', extract_text, name='ocr'),
+]
+
 admin_ = [
     path('admin/', admin.site.urls),    
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
@@ -54,6 +59,7 @@ admin_ = [
 
 
 urlpatterns.extend(Auth)
+urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
 urlpatterns.extend(admin_)
 urlpatterns.extend(Home)
