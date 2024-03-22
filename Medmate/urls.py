@@ -19,7 +19,8 @@ from django.urls import path,re_path
 from base.Views.Auth import *
 from base.Views.Common import *
 from base.Views.Notify import *
-# from base.Views.VideoConf import *
+from base.Views.VideoConf import *
+from base.Views.Documents import *
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
@@ -59,8 +60,15 @@ admin_ = [
 ]
 
 VideoConsult = [
-    # path('video_feed', video_feed, name='video_feed'),
-    # path('MeetRoom', MeetRoom, name='MeetRoom'),
+    path('video_feed', video_feed, name='video_feed'),
+    path('MeetRoom', MeetRoom, name='MeetRoom'),
+]
+
+DocumetsUrls = [
+    path('add_document', add_document, name='add_document'),
+    path('document_list', document_list, name='document_list'),
+    path('edit_document/<uuid:document_id>', edit_document, name='edit_document'),
+    path('delete_document/<uuid:document_id>', delete_document, name='delete_document'),
 ]
 
 urlpatterns.extend(Auth)
@@ -69,4 +77,5 @@ urlpatterns.extend(NotifyUrls)
 urlpatterns.extend(admin_)
 urlpatterns.extend(Home)
 urlpatterns.extend(VideoConsult)
+urlpatterns.extend(DocumetsUrls)
 

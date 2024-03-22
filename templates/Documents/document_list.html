@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document List</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Document List</h1>
+    <ul>
+        {% for document in documents %}
+        <li>
+            <a href="{{ document.document.url }}">{{ document.document_name }}</a>
+            <a href="{% url 'edit_document' document_id=document.id %}">Edit</a>
+            <form action="{% url 'delete_document' document_id=document.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
