@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Text Conversion</title>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.3.0/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <h1>Image to Text Conversion</h1>
+    <input type="file" id="fileInput">
+    <button onclick="convertImageToText()">Convert</button>
+    <div id="output"></div>
+
+    <script>
+        function convertImageToText() {
+            const fileInput = document.getElementById('fileInput');
+            const output = document.getElementById('output');
+
+            // Get the selected image file
+            const file = fileInput.files[0];
+            if (!file) {
+                output.textContent = 'Please select an image.';
+                return;
+            }
+
+            // Read the image file as a base64 string
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageSrc = e.target.result;
+
+                // Use Tesseract.js to perform OCR on the image
+                Tesseract.recognize(
+                    imageSrc,
+                    'eng', // Language: English
+                    { logger: m => console.log(m) } // Optional logger function
+                ).then(({ data: { text } }) => {
+                    // Display the extracted text
+                    output.textContent = text;
+                }).catch(error => {
+                    console.error('Error:', error);
+                    output.textContent = 'Error occurred during text extraction.';
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

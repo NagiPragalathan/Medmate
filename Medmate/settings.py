@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "base"
+    "base",
+    'image_uploader_widget',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -140,6 +140,12 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Medmate.settings')
+
+CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_CACHE_BACKEND = 'default'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
