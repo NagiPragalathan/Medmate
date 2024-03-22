@@ -25,6 +25,10 @@ def add_notification(request):
         return redirect('add_notify')  # Redirect to notification list view
     return render(request, 'Notify/add_notification.html', {'datas':datas})
 
+def notification(request):
+    return render(request, 'Notify/Notification.html')
+
+
 
 @login_required
 def delete_notification(request, notification_id):
