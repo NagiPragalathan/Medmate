@@ -19,6 +19,10 @@ from django.urls import path,re_path
 from base.Views.Auth import *
 from base.Views.Common import *
 from base.Views.Notify import *
+<<<<<<< HEAD
+from base.Views.VideoConf import *
+=======
+>>>>>>> cf55871fa2a35da36bba7f41487cdfa8bddcc840
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
@@ -57,10 +61,15 @@ admin_ = [
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ]
 
+VideoConsult = [
+    path('video_feed', video_feed, name='video_feed'),
+    path('MeetRoom', MeetRoom, name='MeetRoom'),
+]
 
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
 urlpatterns.extend(admin_)
 urlpatterns.extend(Home)
+urlpatterns.extend(VideoConsult)
 

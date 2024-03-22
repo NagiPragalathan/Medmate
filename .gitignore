@@ -9,8 +9,13 @@ media/
 .env
 llmFolder/
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 yolov3.weights
 *.weights
 >>>>>>> 4d547c0 (video conf are updated)
+=======
+yolov3.weights
+*.weights
+>>>>>>> d8bf6e422c4ab5b43f9338726c40c2248e0919d6
 # End Generation Here
