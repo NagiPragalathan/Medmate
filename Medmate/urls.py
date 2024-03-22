@@ -15,9 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from base.Views.Auth import *
+from base.Views.Common import *
 from base.Views.Notify import *
+from django.views.static import serve
+from Medmate import settings
+
+
 
 
 urlpatterns = [
@@ -28,6 +33,7 @@ NotifyUrls = [
     path('add_notify', add_notification, name='add_notify'),
     path('delete_notify/<uuid:notification_id>', delete_notification, name='delete_notify'),
     path('edit_notify/<uuid:notification_id>', edit_notification, name='edit_notify'),
+    path('notification', notification, name='notification'),
 ]
 
 Auth = [
@@ -35,6 +41,20 @@ Auth = [
     path('signup', signup_view, name='signup'),
 ]
 
+Home = [
+    path('home', home, name='home'),
+    path('', home, name='home'),
+]
+
+admin_ = [
+    path('admin/', admin.site.urls),    
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+]
+
 
 urlpatterns.extend(Auth)
 urlpatterns.extend(NotifyUrls)
+urlpatterns.extend(admin_)
+urlpatterns.extend(Home)
+
