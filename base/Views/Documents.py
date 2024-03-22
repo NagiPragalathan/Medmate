@@ -9,9 +9,19 @@ def add_document(request):
         document_file = request.FILES.get('document')
 
         files = {"filePath": (document_name, document_file.read(), "application/octet-stream")}
-
+        url = "https://api.verbwire.com/v1/nft/store/file"
+        headers = {
+            "accept": "application/json",
+            "X-API-Key": "sk_live_fdd243a1-07c3-4c90-a976-c133c47f1b3a"
+        }
+        response = requests.post(url, files=files, headers=headers)
+        response_data = response.json()
+        print(response_data.get('ipfs_storage').get('ipfs_url'))
         if document_name and document_file:
-            ipfs_id = ''  # Calculate or generate IPFS ID
+            try:
+                ipfs_id = response_data.get('ipfs_storage').get('ipfs_url')
+            except:
+                ipfs_id = ''  # Calculate or generate IPFS ID
             user_document = UserDocuments(document_name=document_name, document=document_file, ipfs_id=ipfs_id)
             user_document.save()
             return redirect('document_list')  # Redirect to a view that lists all documents
