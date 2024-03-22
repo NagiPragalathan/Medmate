@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "base",
-    "django_celery_results",
+    'image_uploader_widget',
 ]
 
 CORS_ALLOWED_ORIGINS = [
