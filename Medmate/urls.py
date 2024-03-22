@@ -32,7 +32,10 @@ NotifyUrls = [
     path('add_notify', add_notification, name='add_notify'),
     path('delete_notify/<uuid:notification_id>', delete_notification, name='delete_notify'),
     path('edit_notify/<uuid:notification_id>', edit_notification, name='edit_notify'),
+<<<<<<< HEAD
     path('notification', notification, name='notification'),
+=======
+>>>>>>> 18e8eaebd863f4b8075c51f80dbf675fada486a4
 ]
 
 Auth = [
@@ -49,5 +52,8 @@ admin_ = [
 
 urlpatterns.extend(Auth)
 urlpatterns.extend(NotifyUrls)
+<<<<<<< HEAD
 urlpatterns.extend(admin_)
 
+=======
+>>>>>>> 18e8eaebd863f4b8075c51f80dbf675fada486a4
