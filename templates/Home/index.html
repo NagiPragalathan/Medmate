@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html class="no-js" lang="en">
 
     <head>
@@ -18,32 +19,32 @@
 		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
        
         <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
 
         <!--linear icon css-->
-		<link rel="stylesheet" href="assets/css/linearicons.css">
+		<link rel="stylesheet" href="{% static 'assets/css/linearicons.css' %}">
 
 		<!--animate.css-->
-        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
 
 		<!--flaticon.css-->
-        <link rel="stylesheet" href="assets/css/flaticon.css">
+        <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
 
 		<!--slick.css-->
-        <link rel="stylesheet" href="assets/css/slick.css">
-		<link rel="stylesheet" href="assets/css/slick-theme.css">
+        <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/slick-theme.css' %}">
 		
         <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
 		
 		<!-- bootsnav -->
-		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+		<link rel="stylesheet" href="{% static 'assets/css/bootsnav.css' %}" >	
         
         <!--style.css-->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
         
         <!--responsive.css-->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -110,7 +111,7 @@
 			<ul>
 				<li>
 					<div class="header-top-left">
-						<ul>
+						<ul style="display: none;">
 							<li class="select-opt">
 								<select name="language" id="language" onchange="loadGoogleTranslate()">
 									<option value="default">EN</option>
@@ -134,14 +135,12 @@
 				<li class="head-responsive-right pull-right">
 					<div class="header-top-right">
 						<ul>
-							<li class="header-top-contact">
-								+1 222 777 6565
+							
+							<li class="header-top-contact bg-info text-black ">
+								<a href="{% url 'login' %}">sign in</a>
 							</li>
 							<li class="header-top-contact">
-								<a href="#">sign in</a>
-							</li>
-							<li class="header-top-contact">
-								<a href="#">register</a>
+								<a href="{% url 'signup' %}">register</a>
 							</li>
 						</ul>
 					</div>
@@ -240,7 +239,7 @@
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<img src="../Main Home/assets/images/icons/Medication Reminder.png" alt="Image Description" style="width: 80px; height: 80px;">
+									<img src="{% static 'assets/images/icons/Medication Reminder.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
 								<h2><a href="#">Medication Reminder</a></h2>
 							</div>
@@ -248,7 +247,7 @@
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<img src="../Main Home/assets/images/icons/Consultancy Meet.png" alt="Image Description" style="width: 80px; height: 80px;">
+									<img src="{% static 'assets/images/icons/Consultancy Meet.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
 								<h2><a href="#">Consultancy Meet</a></h2>
 							</div>
@@ -256,7 +255,7 @@
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<img src="../Main Home/assets/images/icons/order of medicine.png" alt="Image Description" style="width: 80px; height: 80px;">
+									<img src="{% static 'assets/images/icons/order of medicine.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
 								<h2><a href="#">Order of Medicine</a></h2>
 							</div>
@@ -264,7 +263,7 @@
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<img src="../Main Home/assets/images/icons/Medicine Details.png" alt="Image Description" style="width: 80px; height: 80px;">
+									<img src="{% static 'assets/images/icons/Medicine Details.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
 								<h2><a href="#">Medicine Details</a></h2>
 							</div>
@@ -272,7 +271,7 @@
 						<li>
 							<div class="single-list-topics-content">
 								<div class="single-list-topics-icon">
-									<img src="../Main Home/assets/images/icons/AI Powered.png" alt="Image Description" style="width: 80px; height: 80px;">
+									<img src="{% static 'assets/images/icons/AI Powered.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
 								<h2><a href="#">AI Powered</a></h2>
 							</div>
@@ -355,7 +354,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c1.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c1.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>Tom Leakar</h2>
@@ -380,7 +379,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c2.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c2.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>monirul islam</h2>
@@ -405,7 +404,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c3.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>Shohrab Hossain</h2>
@@ -430,7 +429,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c4.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c4.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>Tom Leakar</h2>
@@ -455,7 +454,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c1.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c1.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>Tom Leakar</h2>
@@ -480,7 +479,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c2.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c2.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>monirul islam</h2>
@@ -505,7 +504,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c3.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c3.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>Shohrab Hossain</h2>
@@ -530,7 +529,7 @@
 						<div class="testimonial-description">
 							<div class="testimonial-info">
 								<div class="testimonial-img">
-									<img src="assets/images/clients/c4.png" alt="clients">
+									<img src="{% static 'assets/images/clients/c4.png' %}" alt="clients">
 								</div><!--/.testimonial-img-->
 								<div class="testimonial-person">
 									<h2>Tom Leakar</h2>
@@ -611,7 +610,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-blog-item">
 								<div class="single-blog-item-img">
-									<img src="assets/images/blog/b1.jpg" alt="blog image">
+									<img src="{% static 'assets/images/blog/b1.jpg' %}" alt="blog image">
 								</div>
 								<div class="single-blog-item-txt">
 									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
@@ -625,7 +624,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-blog-item">
 								<div class="single-blog-item-img">
-									<img src="assets/images/blog/b2.jpg" alt="blog image">
+									<img src="{% static 'assets/images/blog/b2.jpg' %}" alt="blog image">
 								</div>
 								<div class="single-blog-item-txt">
 									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
@@ -639,7 +638,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-blog-item">
 								<div class="single-blog-item-img">
-									<img src="assets/images/blog/b3.jpg" alt="blog image">
+									<img src="{% static 'assets/images/blog/b3.jpg' %}" alt="blog image">
 								</div>
 								<div class="single-blog-item-txt">
 									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
@@ -739,31 +738,31 @@
 		
 		<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
-		<script src="assets/js/jquery.js"></script>
+		<script src="{% static 'assets/js/jquery.js' %}"></script>
         
         <!--modernizr.min.js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 		
 		<!--bootstrap.min.js-->
-        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 		
 		<!-- bootsnav js -->
-		<script src="assets/js/bootsnav.js"></script>
+		<script src="{% static 'assets/js/bootsnav.js' %}"></script>
 
         <!--feather.min.js-->
-        <script  src="assets/js/feather.min.js"></script>
+        <script  src="{% static 'assets/js/feather.min.js' %}"></script>
 
         <!-- counter js -->
-		<script src="assets/js/jquery.counterup.min.js"></script>
-		<script src="assets/js/waypoints.min.js"></script>
+		<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+		<script src="{% static 'assets/js/waypoints.min.js' %}"></script>
 
         <!--slick.min.js-->
-        <script src="assets/js/slick.min.js"></script>
+        <script src="{% static 'assets/js/slick.min.js' %}"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 		     
         <!--Custom JS-->
-        <script src="assets/js/custom.js"></script>
+        <script src="{% static 'assets/js/custom.js' %}"></script>
         
     </body>
 	

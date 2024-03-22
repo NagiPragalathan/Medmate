@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from base.Views.Auth import *
+from base.Views.Common import *
 from base.Views.Notify import *
 from django.views.static import serve
 from Medmate import settings
@@ -32,15 +33,17 @@ NotifyUrls = [
     path('add_notify', add_notification, name='add_notify'),
     path('delete_notify/<uuid:notification_id>', delete_notification, name='delete_notify'),
     path('edit_notify/<uuid:notification_id>', edit_notification, name='edit_notify'),
-<<<<<<< HEAD
     path('notification', notification, name='notification'),
-=======
->>>>>>> 18e8eaebd863f4b8075c51f80dbf675fada486a4
 ]
 
 Auth = [
     path('login', login_view, name='login'),
     path('signup', signup_view, name='signup'),
+]
+
+Home = [
+    path('home', home, name='home'),
+    path('', home, name='home'),
 ]
 
 admin_ = [
@@ -52,8 +55,6 @@ admin_ = [
 
 urlpatterns.extend(Auth)
 urlpatterns.extend(NotifyUrls)
-<<<<<<< HEAD
 urlpatterns.extend(admin_)
+urlpatterns.extend(Home)
 
-=======
->>>>>>> 18e8eaebd863f4b8075c51f80dbf675fada486a4
