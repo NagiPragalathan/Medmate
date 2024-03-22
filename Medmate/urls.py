@@ -17,10 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from base.Views.Auth import *
+from base.Views.Notify import *
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+]
+
+NotifyUrls = [
+    path('add_notify', add_notification, name='add_notify'),
+
 ]
 
 Auth = [
@@ -30,3 +36,4 @@ Auth = [
 
 
 urlpatterns.extend(Auth)
+urlpatterns.extend(NotifyUrls)

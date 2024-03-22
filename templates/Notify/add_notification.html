@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Notification</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add New Notification</h2>
+        <div id="notification-form">
+            <div class="notification-row">
+                <label for="notify-time">Notify Time:</label>
+                <input type="datetime-local" id="notify-time" name="notify-time">
+                <button class="add-medication-btn">Add Medication</button>
+            </div>
+        </div>
+        <button id="add-timing-btn">Add Timing</button>
+        <button type="submit">Add Notification</button>
+    </div>
+
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addTimingButton = document.getElementById('add-timing-btn');
+        const notificationForm = document.getElementById('notification-form');
+    
+        addTimingButton.addEventListener('click', function() {
+            const timingRow = document.createElement('div');
+            timingRow.classList.add('notification-row');
+    
+            const label = document.createElement('label');
+            label.textContent = 'Notify Time:';
+            timingRow.appendChild(label);
+    
+            const input = document.createElement('input');
+            input.type = 'datetime-local';
+            timingRow.appendChild(input);
+    
+            const addButton = document.createElement('button');
+            addButton.classList.add('add-medication-btn');
+            addButton.textContent = 'Add Medication';
+            timingRow.appendChild(addButton);
+    
+            notificationForm.appendChild(timingRow);
+        });
+    
+        notificationForm.addEventListener('click', function(event) {
+            if (event.target.classList.contains('add-medication-btn')) {
+                const medicationRow = document.createElement('div');
+                medicationRow.classList.add('notification-row');
+    
+                const label = document.createElement('label');
+                label.textContent = 'Medication Details:';
+                medicationRow.appendChild(label);
+    
+                const tabletInput = document.createElement('input');
+                tabletInput.type = 'text';
+                tabletInput.placeholder = 'Tablet Name';
+                medicationRow.appendChild(tabletInput);
+    
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.placeholder = 'Quantity';
+                medicationRow.appendChild(quantityInput);
+    
+                const addButton = document.createElement('button');
+                addButton.classList.add('add-medication-btn');
+                addButton.textContent = 'Add Medication';
+                medicationRow.appendChild(addButton);
+    
+                const timingRow = event.target.parentElement;
+                timingRow.appendChild(medicationRow);
+            }
+        });
+    });
+    
+</script>
+</html>
