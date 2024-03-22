@@ -10,3 +10,13 @@ class Notification(models.Model):
     quantity = models.PositiveIntegerField()
     total_tablet_quantity = models.PositiveIntegerField()
     last_updated_time = models.DateTimeField()
+
+
+class Image(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    image = models.ImageField(upload_to='images/')
+    last_updated_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.image.name
+

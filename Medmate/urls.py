@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from base.Views.Auth import *
 from base.Views.Notify import *
+from base.Views.Ocr import *
 
 
 urlpatterns = [
@@ -35,6 +36,10 @@ Auth = [
     path('signup', signup_view, name='signup'),
 ]
 
+Ocr = [
+    path('ocr', extract_text, name='ocr'),
+]
 
 urlpatterns.extend(Auth)
+urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)

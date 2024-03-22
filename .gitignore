@@ -8,4 +8,5 @@ db.sqlite3
 media/
 static/
 .env
+llmFolder/
 # End Generation Here
