@@ -8,4 +8,9 @@ db.sqlite3
 media/
 .env
 llmFolder/
+<<<<<<< HEAD
+=======
+yolov3.weights
+*.weights
+>>>>>>> 4d547c0 (video conf are updated)
 # End Generation Here

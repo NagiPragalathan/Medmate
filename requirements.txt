@@ -1,2 +1,3 @@
-django-image-uploader-widget
-pytesseract
+version https://git-lfs.github.com/spec/v1
+oid sha256:a39dcedf1b5c3595e065e7b73ec7ef1d03cd03eb1743d1b931dfbee7424efa7c
+size 230
