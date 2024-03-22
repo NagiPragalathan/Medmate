@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Notification</title>
+    <style>
+        /* Add your CSS styles here */
+        /* This is just a basic example */
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Notification</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="notify_time">Notify Time:</label>
+        <input type="datetime-local" id="notify_time" name="notify_time" value="{{ notification.notify_time|date:'Y-m-dTH:i' }}"><br>
+
+        <label for="tablet_name">Tablet Name:</label>
+        <input type="text" id="tablet_name" name="tablet_name" value="{{ notification.tablet_name }}"><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="{{ notification.quantity }}"><br>
+
+        <label for="total_tablet_quantity">Total Tablet Quantity:</label>
+        <input type="number" id="total_tablet_quantity" name="total_tablet_quantity" value="{{ notification.total_tablet_quantity }}"><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

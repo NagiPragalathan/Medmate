@@ -15,12 +15,8 @@
     <div class="flex items-center justify-center md:w-[60vw] max-[w-80%] ">
       <img src="{% static 'imgs/login.png' %}" class=" md:px-0 px-10 mt-10" alt="">
     </div>
-    <form action="">
+    <form action="{% url 'login' %}" method="post">
       {% csrf_token %} 
-
-
-
-
       <div class="data sm:w-[40vw] flex flex-col items-center my-5 sm:items-start  sm:my-0 ">
         <h1 class="text-white text-4xl font-bold">Welcome back 👋</h1>
         <p class=" text-md w-[80%] text-gray-400 py-2 "> Let's stay committed to your well-being together. Log in now to stay on track with your medication regimen and live your healthiest life.</p>
