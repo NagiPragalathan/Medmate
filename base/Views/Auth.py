@@ -13,7 +13,7 @@ def login_view(request):
             return redirect('home')  # Redirect to home page after successful login
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})
-    return render(request, 'login.html')
+    return render(request, 'Auth/login.html')
 
 def signup_view(request):
     if request.method == 'POST':
@@ -25,4 +25,4 @@ def signup_view(request):
             return redirect('home')  # Redirect to home page after successful signup
         else:
             return render(request, 'signup.html', {'error': 'Signup failed'})
-    return render(request, 'signup.html')
+    return render(request, 'Auth/signup.html')
