@@ -1,0 +1,72 @@
+"""
+URL configuration for Medmate project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path,re_path
+from base.Views.Auth import *
+from base.Views.Common import *
+from base.Views.Notify import *
+from base.Views.VideoConf import *
+from django.views.static import serve
+from Medmate import settings
+from base.Views.Ocr import *
+
+
+
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+]
+
+NotifyUrls = [
+    path('add_notify', add_notification, name='add_notify'),
+    path('delete_notify/<uuid:notification_id>', delete_notification, name='delete_notify'),
+    path('edit_notify/<uuid:notification_id>', edit_notification, name='edit_notify'),
+    path('notification', notification, name='notification'),
+]
+
+Auth = [
+    path('login', login_view, name='login'),
+    path('signup', signup_view, name='signup'),
+]
+
+Home = [
+    path('home', home, name='home'),
+    path('', home, name='home'),
+]
+
+Ocr = [
+    path('ocr', extract_text, name='ocr'),
+]
+
+admin_ = [
+    path('admin/', admin.site.urls),    
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+]
+
+VideoConsult = [
+    path('video_feed', video_feed, name='video_feed'),
+    path('MeetRoom', MeetRoom, name='MeetRoom'),
+]
+
+urlpatterns.extend(Auth)
+urlpatterns.extend(Ocr)
+urlpatterns.extend(NotifyUrls)
+urlpatterns.extend(admin_)
+urlpatterns.extend(Home)
+urlpatterns.extend(VideoConsult)
+

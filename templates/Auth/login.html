@@ -1,0 +1,62 @@
+<!-- login.html -->
+<!doctype html>
+
+{% load static %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class=" ">
+  <div class=" bg-[#0F172A] min-h-[100vh] flex flex-col justify-around items-center md:flex-row md:justify-center  ">
+    <div class="flex items-center justify-center md:w-[60vw] max-[w-80%] ">
+      <img src="{% static 'imgs/login.png' %}" class=" md:px-0 px-10 mt-10" alt="">
+    </div>
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %} 
+      <div class="data sm:w-[40vw] flex flex-col items-center my-5 sm:items-start  sm:my-0 ">
+        <h1 class="text-white text-4xl font-bold">Welcome back 👋</h1>
+        <p class=" text-md w-[80%] text-gray-400 py-2 "> Let's stay committed to your well-being together. Log in now to stay on track with your medication regimen and live your healthiest life.</p>
+        <div class="bg-gray-800 rounded-full py-4 px-24 mt-5 inline-flex hover:bg-gray-600">
+          <img src="{% static 'imgs/Google.png' %}" class="pr-3" alt="">
+          <h2 class="font-semibold text-white ">Sign in with Google</h2>
+        </div>
+        <div class="input-box flex flex-col">
+          <label for="username" class="text-[#E4E4E7] mt-5">Email address</label>
+          <input type="email" placeholder="example@gmail.com" required id="username" name="username" class="border border-1 border-[#94A3B8] bg-transparent rounded-full p-2 px-3 text-white  inline-block w-80 mt-2">
+          <label for="password" class="text-[#E4E4E7] mt-3">password</label>
+          <input type="password" id="password" placeholder="********" name="password" required class="border border-1 border-[#94A3B8] bg-transparent rounded-full p-2 px-3 text-white inline-block w-80 mt-2">
+          <div class="flex justify-around mt-5 px-2">
+            <div class="flex ">
+              <input type="checkbox" class="bg-[#0F172A] text-[#0F172A] border border-[#94A3B8]">
+              <p class=" text-sm text-[#94A3B8] px-2">Remember me</p>
+            </div>
+            <a href="" class="text-sm text-blue-700 hover:text-blue-500">Forgot password ?</a>
+          </div>
+          <button id="loginBtn" type="submit" class="bg-blue-600 rounded-full text-xl py-2 text-white w-40 mt-5 hover:bg-blue-800">Login</button>
+  
+          <div class="flex mt-5">
+            <p class="text-[#A1A1AA]">Don't have an account?</p>
+            <a href="{% url 'signup' %}" class="text-blue-800 font-semibold pl-1 hover:text-blue-400"> Create new account </a>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+
+  <script>
+    document.getElementById("loginBtn").addEventListener("click", function() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      //  perform validation or send the data to the server for authentication
+
+      console.log("Email: " + email + ", Password: " + password);
+    });
+  </script>
+</body>
+</html>
