@@ -19,9 +19,11 @@ from django.urls import path,re_path
 from base.Views.Auth import *
 from base.Views.Common import *
 from base.Views.Notify import *
+from base.Views.CareTaker import *
 from base.Views.VideoConf import *
 from base.Views.Documents import *
 from base.Views.Shopping import *
+from base.Views.LlmAi import *
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
@@ -66,6 +68,7 @@ VideoConsult = [
 ]
 
 DocumetsUrls = [
+    path('chatbot_res', chat, name='chatbot_res'),
     path('add_document', add_document, name='add_document'),
     path('document_list', document_list, name='document_list'),
     path('edit_document/<uuid:document_id>', edit_document, name='edit_document'),
@@ -84,6 +87,13 @@ medical = [
 
 ]
 
+CareTakerUrl = [
+    path('add_caretaker', add_caretaker, name='add_caretaker'),
+    path('caretaker_list', caretaker_list, name='caretaker_list'),
+    path('caretaker_edit/<uuid:caretaker_id>', caretaker_edit, name='caretaker_edit'),
+    path('caretaker_delete/<uuid:caretaker_id>', caretaker_delete, name='caretaker_delete'),
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
@@ -92,4 +102,5 @@ urlpatterns.extend(Home)
 urlpatterns.extend(VideoConsult)
 urlpatterns.extend(DocumetsUrls)
 urlpatterns.extend(medical)
+urlpatterns.extend(CareTakerUrl)
 

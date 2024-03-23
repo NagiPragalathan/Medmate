@@ -3,5 +3,8 @@ from django.shortcuts import render
 from base.models import Notification
 
 def home(request):
-    alarm = Notification(user=request.user)
+    try:
+        alarm = Notification.objects.filter(user=request.user)[::-1][0]
+    except:
+        alarm = None
     return render(request, 'Home/index.html', {"userTime":alarm})

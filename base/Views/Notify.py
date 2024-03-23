@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from base.models import Notification
+from base.models import Notification, CareTaker
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest
+from django.core.mail import send_mail
+
 
 def add_notification(request):
     datas = Notification.objects.filter(user=request.user).order_by('-last_updated_time')
@@ -26,8 +28,55 @@ def add_notification(request):
     return render(request, 'Notify/add_notification.html', {'datas':datas})
 
 def notification(request):
-    return render(request, 'Notify/Notification.html')
+    try:
+        datas = Notification.objects.filter(user=request.user).latest('notify_time')
+    except:
+        datas = None
+    if datas == None:
+        return render(request, 'Notify/notification.html', {'datas':datas})
+    datas = Notification.objects.filter(user=request.user).latest('notify_time')
+    print(datas)
+    medicines_left = int(datas.total_tablet_quantity) - int(datas.quantity)
+    days_left = int(int(datas.total_tablet_quantity)/int(datas.quantity))  # Calculate days left to buy medicines
+    list_user = []
+    care = CareTaker.objects.filter(user=request.user)
+    for i in care:
+        list_user.append(str(i.mailId))
+    subject = 'Time to Take Your Medicines'
+    message = f"""
+    <html>
+    <head>
+        <style>
+            body {{ font-family: Arial, sans-serif; }}
+            h1 {{ color: #333; }}
+            p {{ margin-bottom: 10px; }}
+        </style>
+    </head>
+    <body>
+        <h1>{subject}</h1>
+        <p><strong>Medicines Left:</strong> {medicines_left}</p>
+        <p><strong>Days Left to Buy Medicines:</strong> {days_left}</p>
+        <p><strong>Notify Time:</strong> {datas.notify_time}</p>
+        <p><strong>Tablet Name:</strong> {datas.tablet_name}</p>
+        <p><strong>Quantity:</strong> {datas.quantity}</p>
+    </body>
+    </html>
+    """
+    print(message, request.user.email)
+    
+    from_email = 'sitejec@gmail.com'
+    recipient_list = ['nagipragalathan@gmail.com', request.user.email]
+    recipient_list.extend(list_user)
+    print(recipient_list)
+    send_mail(subject, '', from_email, recipient_list, fail_silently=False, html_message=message)
+    print("mail sent successfully..!")
 
+    return render(request, 'Notify/Notification.html', {'datas': datas, 'msg':f'''<h1>{subject}</h1>
+        <p><strong>Medicines Left:</strong> {medicines_left}</p>
+        <p><strong>Days Left to Buy Medicines:</strong> {days_left}</p>
+        <p><strong>Notify Time:</strong> {datas.notify_time}</p>
+        <p><strong>Tablet Name:</strong> {datas.tablet_name}</p>
+        <p><strong>Quantity:</strong> {datas.quantity}</p>'''})
 
 
 @login_required

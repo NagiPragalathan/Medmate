@@ -50,3 +50,13 @@ class UserDocuments(models.Model):
 
     def __str__(self):
         return self.document_name
+
+class CareTaker(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey field for the User model
+    name = models.CharField(max_length=100)
+    mailId = models.EmailField()
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name

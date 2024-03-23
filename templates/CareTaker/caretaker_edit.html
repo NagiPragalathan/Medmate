@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit CareTaker</title>
+</head>
+<body>
+    <h1>Edit CareTaker</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ caretaker.name }}"><br>
+        <label for="mailId">Mail ID:</label><br>
+        <input type="email" id="mailId" name="mailId" value="{{ caretaker.mailId }}"><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

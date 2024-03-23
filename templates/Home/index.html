@@ -808,14 +808,35 @@
       
         </div>
     </body>
-<<<<<<< HEAD
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-  <script src=" {% static 'scripts/responses.js' %} "></script>
-  <script src=" {% static 'scripts/chat.js' %} "></script>
-=======
+	<script src=" {% static 'scripts/responses.js' %} "></script>
+	<script src=" {% static 'scripts/chat.js' %} "></script>
 	<script>
-		let notifytime = {{ userTime.notify_time }}
+		// Get the notify time value from Django template
+
+		// Function to check if the current time is within the range
+		function checkNotifyTime() {
+			let notifyTime = new Date("{{ userTime.notify_time|date:"D, d M Y H:i:s"}}");
+			// Get the current time
+			let currentTime = new Date();
+			console.log(notifyTime, currentTime)
+	
+			// Calculate the time 10 seconds after notify time
+			let endTime = new Date(notifyTime.getTime() + 10 * 1000);
+	
+			// Check if the current time is between notify time and 10 seconds after that
+			if (currentTime >= notifyTime && currentTime <= endTime) {
+				// Redirect to another page
+				console.log("running..!")
+				window.location.href = "{% url 'notification' %}";
+
+			}else{
+				console.log("missed")
+			}
+		}
+		console.log("start..!")
+	
+		// Call checkNotifyTime function every 2 seconds using setInterval
+		setInterval(checkNotifyTime, 2000);
 	</script>
->>>>>>> 39d44af368ed1e9a984889a150f8df6b8e530a70
 	
 </html>
