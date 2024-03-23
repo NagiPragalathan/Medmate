@@ -21,6 +21,7 @@ from base.Views.Common import *
 from base.Views.Notify import *
 # from base.Views.VideoConf import *
 from base.Views.Documents import *
+from base.Views.Shopping import *
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
@@ -78,6 +79,11 @@ DocumetsUrls = [
     path('delete_document/<uuid:document_id>', delete_document, name='delete_document'),
 ]
 
+medical = [
+    path('Shoppingview', Shoppingview, name='Shoppingview'),
+
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
@@ -85,4 +91,5 @@ urlpatterns.extend(admin_)
 urlpatterns.extend(Home)
 urlpatterns.extend(VideoConsult)
 urlpatterns.extend(DocumetsUrls)
+urlpatterns.extend(medical)
 

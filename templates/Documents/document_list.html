@@ -13,7 +13,7 @@
             <h1 class="text-3xl font-bold mb-6">Document List</h1>
         </div>
 
-        <div class="overflow-x-auto mx-4">
+        <div class="overflow-x-scroll mx-2">
             <table class="table-auto w-full border-collapse border border-black">
                 <thead>
                     <tr>
@@ -29,16 +29,20 @@
                         <td class="border border-black px-4 py-2 text-center">Document 1</td>
                         <td class="border border-black px-4 py-2 text-center">User A</td>
                         <td class="border border-black px-4 py-2 text-center">2022-05-01</td>
-                        <td class="border border-black px-4 py-2 text-center">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full focus:outline-none focus:shadow-outline">Verify with IPFS</button>
+                        <td class="border border-black px-4 py-2 text-center flex flex-col md:flex-row md:justify-evenly   ">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Verify with IPFS</button>
+                            <a href="{% url 'edit_document' document_id=document.id %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:shadow-outline ml-2">Edit</a>
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-full focus:outline-none focus:shadow-outline ml-2">Delete</button>
                         </td>
                     </tr>
                     <tr>
                         <td class="border border-black px-4 py-2 text-center">Document 2</td>
                         <td class="border border-black px-4 py-2 text-center">User B</td>
                         <td class="border border-black px-4 py-2 text-center">2022-05-02</td>
-                        <td class="border border-black px-4 py-2 text-center">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full focus:outline-none focus:shadow-outline">Verify with IPFS</button>
+                        <td class="border border-black px-4 py-2 text-center flex flex-col md:flex-row md:justify-evenly   ">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Verify with IPFS</button>
+                            <a href="{% url 'edit_document' document_id=document.id %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:shadow-outline ml-2">Edit</a>
+                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-5 rounded-full focus:outline-none focus:shadow-outline ml-2">Delete</button>
                         </td>
                     </tr>
                     <!-- Add more rows as needed -->
