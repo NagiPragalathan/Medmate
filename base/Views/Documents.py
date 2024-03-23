@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from base.models import UserDocuments
 import requests
+import PyPDF2
 
 
 def add_document(request):
@@ -8,10 +9,33 @@ def add_document(request):
         document_name = request.POST.get('document_name')
         document_file = request.FILES.get('document')
 
-        files = {"filePath": (document_name, document_file.read(), "application/octet-stream")}
+        if document_file:
+            # Create a PDF reader object
+            pdf_reader = PyPDF2.PdfFileReader(document_file)
 
+            # Initialize an empty string to store the document content
+            document_content = ""
+
+            # Loop through each page in the PDF and extract text
+            for page_num in range(pdf_reader.numPages):
+                page = pdf_reader.getPage(page_num)
+                document_content += page.extractText()
+        print(document_content)
+
+        files = {"filePath": (document_name, document_file.read(), "application/octet-stream")}
+        url = "https://api.verbwire.com/v1/nft/store/file"
+        headers = {
+            "accept": "application/json",
+            "X-API-Key": "sk_live_fdd243a1-07c3-4c90-a976-c133c47f1b3a"
+        }
+        response = requests.post(url, files=files, headers=headers)
+        response_data = response.json()
+        print(response_data.get('ipfs_storage').get('ipfs_url'))
         if document_name and document_file:
-            ipfs_id = ''  # Calculate or generate IPFS ID
+            try:
+                ipfs_id = response_data.get('ipfs_storage').get('ipfs_url')
+            except:
+                ipfs_id = ''  # Calculate or generate IPFS ID
             user_document = UserDocuments(document_name=document_name, document=document_file, ipfs_id=ipfs_id)
             user_document.save()
             return redirect('document_list')  # Redirect to a view that lists all documents
