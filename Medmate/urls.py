@@ -71,6 +71,13 @@ DocumetsUrls = [
     path('delete_document/<uuid:document_id>', delete_document, name='delete_document'),
 ]
 
+DocumetsUrls = [
+    path('add_document', add_document, name='add_document'),
+    path('document_list', document_list, name='document_list'),
+    path('edit_document/<uuid:document_id>', edit_document, name='edit_document'),
+    path('delete_document/<uuid:document_id>', delete_document, name='delete_document'),
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)

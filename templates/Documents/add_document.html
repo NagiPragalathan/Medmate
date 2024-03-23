@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Document</title>
+<<<<<<< HEAD
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -47,5 +48,20 @@
             this.submit();
         });
     </script>
+=======
+</head>
+<body>
+    <h1>Add Document</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_document_name">Document Name:</label>
+        <input type="text" name="document_name" id="id_document_name" required><br><br>
+        
+        <label for="id_document">Document:</label>
+        <input type="file" name="document" id="id_document" accept=".pdf,.doc,.docx" required><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+>>>>>>> fcfe7d6ec34ccca890c9b242e4ac636774b65067
 </body>
 </html>
