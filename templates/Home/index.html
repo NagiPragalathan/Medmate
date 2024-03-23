@@ -245,11 +245,11 @@
 				<div class="list-topics-content">
 					<ul>
 						<li>
-							<div class="single-list-topics-content">
+							<div  class="single-list-topics-content">
 								<div class="single-list-topics-icon">
 									<img src="{% static 'assets/images/icons/Medication Reminder.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
-								<h2><a href="#">Medication Reminder</a></h2>
+								<h2><a href="{% url 'notification' %}">Medication Reminder</a></h2>
 							</div>
 						</li>
 						<li>
@@ -257,7 +257,7 @@
 								<div class="single-list-topics-icon">
 									<img src="{% static 'assets/images/icons/Consultancy Meet.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
-								<h2><a href="#">Consultancy Meet</a></h2>
+								<h2><a href="/MeetRoom">Consultancy Meet</a></h2>
 							</div>
 						</li>
 						<li>
@@ -265,7 +265,7 @@
 								<div class="single-list-topics-icon">
 									<img src="{% static 'assets/images/icons/order of medicine.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
-								<h2><a href="#">Order of Medicine</a></h2>
+								<h2><a href="{% url 'Shoppingview' %}">Order of Medicine</a></h2>
 							</div>
 						</li>
 						<li>
@@ -273,7 +273,7 @@
 								<div class="single-list-topics-icon">
 									<img src="{% static 'assets/images/icons/Medicine Details.png' %}" alt="Image Description" style="width: 80px; height: 80px;">
 								</div>
-								<h2><a href="#">Medicine Details</a></h2>
+								<h2><a href="{% url 'document_list'%}">Medicine Details</a></h2>
 							</div>
 						</li>
 						<li>
@@ -809,6 +809,16 @@
         </div>
     </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+	<script>
+		let notifytime = {{ userTime.notify_time }}
+	</script>
+=======
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+  <script src=" {% static 'scripts/responses.js' %} "></script>
+  <script src=" {% static 'scripts/chat.js' %} "></script>
+>>>>>>> 97325d30401eaabcb09d662dd06539dde06f762e
+=======
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
   <script src=" {% static 'scripts/responses.js' %} "></script>
   <script src=" {% static 'scripts/chat.js' %} "></script>
@@ -817,5 +827,6 @@
 		let notifytime = {{ userTime.notify_time }}
 	</script>
 >>>>>>> 39d44af368ed1e9a984889a150f8df6b8e530a70
+>>>>>>> fcc80fcc0b143aa81d3ff5ababfbca2e277be3ba
 	
 </html>
