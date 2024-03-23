@@ -15,18 +15,20 @@
             <h1 class="text-3xl md:text-6xl font-bold text-[#fac13d] m-2 mb-8">Consult with your Doctor</h1>
         </div>
         <div class="flex flex-col md:flex-row justify-around gap-10">
-            <div class="w-[90vw] md:w-[45vw] bg-[#f4f4f4] h-[50vh] md:h-[60vh] rounded-3xl flex flex-col items-center">
+            {% comment %} <div class="w-[90vw] md:w-[45vw] bg-[#f4f4f4] h-[50vh] md:h-[60vh] rounded-3xl flex flex-col items-center">
                 <video id="videoStream" class="w-full h-full" autoplay></video>
-            </div>
+            </div> {% endcomment %}
                 
+            <img src="{% url 'video_feed' %}" class="w-[90vw] md:w-[45vw] bg-[#f4f4f4] h-[50vh] md:h-[60vh] rounded-3xl flex flex-col items-center">
             <img src="{% url 'video_feed' %}" class="w-[90vw] md:w-[45vw] bg-[#f4f4f4] h-[50vh] md:h-[60vh] rounded-3xl flex flex-col items-center">
                 
             </img>
         </div>
         <div class="m-6">
+            <a href="{% url 'home' %}">
             <button id="endBtn" class="text-2xl bg-[#ff0000] px-6 py-2 rounded-xl flex justify-center items-center gap-2 font-semibold"> <span class="">
                 <i class="fa-solid fa-phone"></i>
-            </span> End </button>
+            </span> End </button></a>
         </div>
         
     </div>

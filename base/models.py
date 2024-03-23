@@ -30,7 +30,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
-    
+
+
+class UserProduct(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey field for the User model
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # ForeignKey field for the Product model
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.product_name}"
 
 class UserDocuments(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

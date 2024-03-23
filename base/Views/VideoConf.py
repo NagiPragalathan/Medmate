@@ -13,8 +13,15 @@ from django.conf import settings
 import speech_recognition as sr
 from .Emotion import classify_emotion_efficient, find_unwanted_words, find_unwanted_words_bool
 from django.views.decorators import gzip
+from collections import Counter
 
 from django.shortcuts import render
+
+p = pyaudio.PyAudio()
+chunk = 4096
+sample_format = pyaudio.paInt16
+channels = 2
+fs = 16000
 
 def record_audio(stream, filename):
     chunk = 4096  # Larger chunk size for faster recording
@@ -189,3 +196,106 @@ def video_feed(request):
 
 def MeetRoom(request):
     return render(request, 'VideoConf/MeetRoom.html')
+
+
+
+def report(request,total_question,total_mark):
+    print(total_question,total_mark)
+    total_marks = 100 * total_mark / total_question
+    average_percentage = round((total_marks - 500)/499*100,3)
+    base_save_path = os.path.join(settings.BASE_DIR, 'base', 'generated_files')
+    sentiments = []
+    correct_incorrect_flags = []
+    converstations_datas = []
+    # Read the file
+    file_path = os.path.join(base_save_path, 'converted_text.txt')
+    with open(file_path, 'r') as f:
+        for line in f:
+            # Skip empty lines
+            if line.strip() == "":
+                continue
+
+            # Split and strip each cell in the row
+            row = [cell.strip() for cell in line.split(',')]
+            print(row)
+            table_d = [cell.strip() for cell in line.split(',')]
+            converstations_datas.append(table_d)
+            # Check for unexpected data anomalies
+            if len(row) < 4:
+                continue
+
+            # Extract the values of the last two columns
+            sentiment = row[-2]
+            correct_incorrect_flag = row[-1]
+
+            # Append the values to the lists
+            sentiments.append(sentiment)
+            correct_incorrect_flags.append(correct_incorrect_flag)
+    # with open(file_path, 'w') as f:
+    #     f.write("")
+    # print("Text Deleted")
+    # print(converstations_datas)
+    # Count the occurrences of each unique value for sentiment and correct/incorrect flags
+    sentiment_counter = Counter(sentiments)
+    correct_incorrect_counter = Counter(correct_incorrect_flags)
+
+    # Calculate the highest percentage for sentiment
+    if sentiment_counter:  # Check if the counter is not empty
+        try:
+            highest_sentiment = max(sentiment_counter, key=sentiment_counter.get)
+        except:
+            highest_sentiment=0
+    else:
+        highest_sentiment = 0  # or some other default value
+    try:
+        highest_sentiment_percentage = (sentiment_counter[highest_sentiment] / len(sentiments)) * 100
+    except:
+        highest_sentiment_percentage=0
+    # Calculate the highest percentage for correct/incorrect flags
+    try:
+        highest_correct_incorrect = max(correct_incorrect_counter, key=correct_incorrect_counter.get)
+    except:
+        highest_correct_incorrect=0
+    try:
+        highest_correct_incorrect_percentage = (correct_incorrect_counter[highest_correct_incorrect] / len(correct_incorrect_flags)) * 100
+    except:
+        highest_correct_incorrect_percentage =0
+    head = []
+    dataset = []
+    Action = []
+    voice_act = []
+    time = []
+    for i in converstations_datas:
+        Action.append(i[-2])
+    for i in converstations_datas:
+        if i[-2] not in head:
+            head.append(i[-2])
+            dataset.append(Action.count(i[-2]))
+        time.append(i[0])
+        voice_act.append(0 if i[-1] == "False" else 1)
+
+    
+    # print(voice_act,time)
+    # print(sentiment_counter,list(sentiment_counter.items()),correct_incorrect_counter,highest_sentiment,highest_correct_incorrect,highest_sentiment)
+    context = {"converstation":converstations_datas,
+               "highest_sentiment":highest_sentiment, 
+               "highest_sentiment_percentage":highest_sentiment_percentage, 
+               "highest_correct_incorrect":highest_correct_incorrect, 
+               "highest_correct_incorrect_percentage":highest_correct_incorrect_percentage,
+               "remaining_marks":total_mark - total_question,
+               
+               "total_question":total_question,
+               "total_mark":total_mark,
+               
+               "circle_label":["Questions","Total Mark"],
+               "circle_data":[abs(total_question-total_mark),total_mark],
+               
+               "head_data":head,
+               "dataset_data":dataset,
+               
+               "voice_act":voice_act,
+               "time":time
+               }
+    return render(request,"gallery.html",context)
+    
+    

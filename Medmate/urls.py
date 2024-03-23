@@ -19,7 +19,7 @@ from django.urls import path,re_path
 from base.Views.Auth import *
 from base.Views.Common import *
 from base.Views.Notify import *
-from base.Views.VideoConf import *
+from base.Views.VideoConf import MeetRoom, video_feed
 from base.Views.Documents import *
 from django.views.static import serve
 from Medmate import settings
