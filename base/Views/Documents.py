@@ -1,12 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from base.models import UserDocuments
 import requests
+import PyPDF2
 
 
 def add_document(request):
     if request.method == 'POST':
         document_name = request.POST.get('document_name')
         document_file = request.FILES.get('document')
+
+        if document_file:
+            # Create a PDF reader object
+            pdf_reader = PyPDF2.PdfFileReader(document_file)
+
+            # Initialize an empty string to store the document content
+            document_content = ""
+
+            # Loop through each page in the PDF and extract text
+            for page_num in range(pdf_reader.numPages):
+                page = pdf_reader.getPage(page_num)
+                document_content += page.extractText()
+        print(document_content)
 
         files = {"filePath": (document_name, document_file.read(), "application/octet-stream")}
         url = "https://api.verbwire.com/v1/nft/store/file"

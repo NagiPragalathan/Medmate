@@ -19,15 +19,8 @@ from django.urls import path,re_path
 from base.Views.Auth import *
 from base.Views.Common import *
 from base.Views.Notify import *
-<<<<<<< HEAD
-# from base.Views.VideoConf import *
-=======
 from base.Views.VideoConf import *
-<<<<<<< HEAD
-=======
->>>>>>> 1101cd9a427a01924bf1bad493f14d5bef848b3d
 from base.Views.Documents import *
->>>>>>> 05a3867d1259dd8cb932591607f7d866604e0a6e
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
