@@ -1,5 +1,7 @@
 # views.py
 from django.shortcuts import render
+from base.models import Notification
 
 def home(request):
-    return render(request, 'Home/index.html')
+    alarm = Notification(user=request.user)
+    return render(request, 'Home/index.html', {"userTime":alarm})
