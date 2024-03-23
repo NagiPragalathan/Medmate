@@ -8,7 +8,13 @@ db.sqlite3
 media/
 .env
 llmFolder/
+<<<<<<< HEAD
 yolov3.weights
 *.weights
 saved_images
+=======
+med/
+yolov3.weights
+*.weights
+>>>>>>> 1101cd9a427a01924bf1bad493f14d5bef848b3d
 # End Generation Here
