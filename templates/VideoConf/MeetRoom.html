@@ -24,12 +24,19 @@
                 
             </img>
         </div>
-        <div class="m-6">
-            <a href="{% url 'home' %}">
-            <button id="endBtn" class="text-2xl bg-[#ff0000] px-6 py-2 rounded-xl flex justify-center items-center gap-2 font-semibold"> <span class="">
-                <i class="fa-solid fa-phone"></i>
-            </span> End </button></a>
-        </div>
+        <div class="flex flex-col md:flex-row">
+          <div class="m-6">
+            <a href="{% url 'home' %}"></a>
+              <button id="endBtn" class="text-2xl bg-[#ff0000] px-6 py-2 rounded-xl flex justify-center items-center gap-2 font-semibold"> <span class="">
+                  <i class="fa-solid fa-phone"></i>
+              </span> End </button>
+          </div>
+          <div class="m-6">
+              <button id="ReportBtn" class="text-2xl bg-[#00ff00] px-6 py-2 rounded-xl flex justify-center items-center gap-2 font-semibold"> <span class="">
+                  <i class="fa-solid fa-file"></i>
+              </span> Report </button>
+          </div>
+      </div>
         
     </div>
 
