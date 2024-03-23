@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto py-8">
+        <div class="flex justify-center ">
+            <h1 class="text-3xl font-bold mb-6">Document List</h1>
+        </div>
+
+        <div class="overflow-x-auto mx-4">
+            <table class="table-auto w-full border-collapse border border-black">
+                <thead>
+                    <tr>
+                        <th class="border border-black px-4 py-2">Document Name</th>
+                        <th class="border border-black px-4 py-2">Uploaded By</th>
+                        <th class="border border-black px-4 py-2">Uploaded On</th>
+                        <th class="border border-black px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows, replace with dynamic data -->
+                    <tr>
+                        <td class="border border-black px-4 py-2 text-center">Document 1</td>
+                        <td class="border border-black px-4 py-2 text-center">User A</td>
+                        <td class="border border-black px-4 py-2 text-center">2022-05-01</td>
+                        <td class="border border-black px-4 py-2 text-center">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full focus:outline-none focus:shadow-outline">Verify with IPFS</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-black px-4 py-2 text-center">Document 2</td>
+                        <td class="border border-black px-4 py-2 text-center">User B</td>
+                        <td class="border border-black px-4 py-2 text-center">2022-05-02</td>
+                        <td class="border border-black px-4 py-2 text-center">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full focus:outline-none focus:shadow-outline">Verify with IPFS</button>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

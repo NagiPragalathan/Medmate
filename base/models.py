@@ -30,3 +30,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+    
+
+class UserDocuments(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    document_name = models.CharField(max_length=255)
+    document = models.FileField(upload_to='user_documents/')
+    ipfs_id = models.CharField(max_length=255)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.document_name
