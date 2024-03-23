@@ -18,13 +18,17 @@
     <div class="min-h-[100vh] bg-[#0F172A] flex flex-col justify-center items-center">
         <h1 class="text-4xl font-bold text-[#f8fb3e] m-2">Remainders 🔔</h1>
         <div class="w-[80vw] md:w-[60vw] bg-[#f4f4f4] h-[60vh] md:h-[70vh] rounded-3xl flex flex-col  items-center">
-            <img src="" alt="bell Notification" class="w-[40%] m-2">
+            <img src="{% static 'imgs/bell.png'%}" alt="bell Notification" class="w-[40%] m-2">
             <div class="w-[80%]">
                 <p class="text-xl font-semibold">{{ msg|safe }}</p>
             </div>
             <!-- Button to trigger audio playback -->
             <button onclick="playAudio()" class=" invisible">Play Bell Sound</button>
+<<<<<<< HEAD
             <a href="{% url 'home' %}" onclick="" class="mt-[25%] md:mt-4 bg-[#dc2626] text-xl font-bold border rounded-2xl py-2 px-8 m-2 hover:border-[#dc2626] hover:text-[#dc2626] hover:bg-[#f5a7a7]">close</a>
+=======
+            <a href="{% url 'home'%}" onclick="" class="mt-[25%] md:mt-4 bg-[#dc2626] text-xl font-bold border rounded-2xl py-2 px-8 m-2 hover:border-[#dc2626] hover:text-[#dc2626] hover:bg-[#f5a7a7]">close</a>
+>>>>>>> 6b1ccdfcec7f27e1a9b718651b4b9d37528855f7
         </div>
     </div>
 
