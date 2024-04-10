@@ -6,6 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Signup</title>
+  <style>
+    .radio-label {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .radio-label:hover {
+      background-color: #6B7280;
+    }
+    .radio-label input[type="radio"] {
+      display: none;
+    }
+    .radio-label input[type="radio"]:checked + .radio-text {
+      color: #ffffff;
+    }
+    .radio-label input[type="radio"]:checked + .radio-text:before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #6B7280;
+      margin-right: 8px;
+    }
+  </style>  
 </head>
 <body class=" ">
   <div class=" bg-[#0F172A] min-h-[100vh] flex flex-col justify-around items-center md:flex-row md:justify-center  ">
@@ -21,8 +48,17 @@
             <div class="bg-gray-800 rounded-full py-4 px-24 mt-3 inline-flex hover:bg-gray-600">
               <img src="{% static 'imgs/Google.png' %}" class="pr-3" alt="">
               <h2 class="font-semibold text-white ">Sign up with Google</h2>
+            </div><br>
+            <div class="flex items-center">
+              <label for="doctor" class="radio-label mr-4" style="margin-right: 50px;border:1px solid white;padding: ;">
+                <input type="radio" id="doctor" name="userType" value="doctor" required>
+                <span class="radio-text" style="color: #ffffff;">Doctor</span>
+              </label>
+              <label for="patient" class="radio-label" style="margin-left: 50px;border:1px solid white"">
+                <input type="radio" id="patient" name="userType" value="patient">
+                <span class="radio-text" style="color: #ffffff;">Patient</span>
+              </label>
             </div>
-            <div class="input-box flex flex-col">
                 <label for="username" class="text-[#E4E4E7] mt-5">Email address</label>
                 <input type="email" placeholder="example@gmail.com" required id="username" name="username" class="border border-1 border-[#94A3B8] bg-transparent rounded-full p-2 px-3 text-white  inline-block w-80 mt-2">
                 <label for="password" class="text-[#E4E4E7] mt-3">password</label>
