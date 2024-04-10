@@ -65,6 +65,7 @@ admin_ = [
 VideoConsult = [
     # path('video_feed', video_feed, name='video_feed'),
     # path('MeetRoom', MeetRoom, name='MeetRoom'),
+    path('meeting/', meeting, name='meeting'),
 ]
 
 DocumetsUrls = [

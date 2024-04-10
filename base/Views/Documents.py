@@ -46,6 +46,9 @@ def add_document(request):
 def document_list(request):
     documents = UserDocuments.objects.all()
     return render(request, 'Documents/document_list.html', {'documents': documents})
+def meeting(request):
+    documents = UserDocuments.objects.all()
+    return render(request, 'VideoConf/WEB_UIKITS.html',{'documents': documents})
 
 
 def edit_document(request, document_id):
