@@ -19,12 +19,8 @@ from django.urls import path,re_path
 from base.Views.Auth import *
 from base.Views.Common import *
 from base.Views.Notify import *
-<<<<<<< HEAD
 from base.Views.CareTaker import *
-from base.Views.VideoConf import *
-=======
 # from base.Views.VideoConf import *
->>>>>>> 6b1ccdfcec7f27e1a9b718651b4b9d37528855f7
 from base.Views.Documents import *
 from base.Views.Shopping import *
 from base.Views.LlmAi import *
