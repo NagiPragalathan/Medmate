@@ -94,6 +94,10 @@ CareTakerUrl = [
     path('caretaker_delete/<uuid:caretaker_id>', caretaker_delete, name='caretaker_delete'),
 ]
 
+e_commerse = [
+    
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
