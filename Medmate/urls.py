@@ -22,6 +22,7 @@ from base.Views.Notify import *
 from base.Views.CareTaker import *
 # from base.Views.VideoConf import *
 from base.Views.Documents import *
+from base.Views.Dashboard import *
 from base.Views.Shopping import *
 from base.Views.LlmAi import *
 from django.views.static import serve
@@ -94,6 +95,11 @@ CareTakerUrl = [
     path('caretaker_delete/<uuid:caretaker_id>', caretaker_delete, name='caretaker_delete'),
 ]
 
+e_commerse = [
+        path('dash', dash, name='dash'),
+
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
@@ -102,5 +108,6 @@ urlpatterns.extend(Home)
 urlpatterns.extend(VideoConsult)
 urlpatterns.extend(DocumetsUrls)
 urlpatterns.extend(medical)
+urlpatterns.extend(e_commerse)
 urlpatterns.extend(CareTakerUrl)
 
