@@ -8,3 +8,6 @@ def Shoppingview(request):
 
 def buymed(request):
      return render(request, 'Buy_medicines/index.html')
+
+def medicine(request):
+     return render(request,'Buy_medicines/medicine.html')
