@@ -102,7 +102,9 @@ e_commerse = [
 
 buy_medicine =[
     path('buymed',buymed,name='buymed'),
-    path('medicine',medicine,name='medicine')
+    path('medicine',medicine,name='medicine'),
+    path('cart',cart,name='cart'),
+
 ]
 
 urlpatterns.extend(Auth)

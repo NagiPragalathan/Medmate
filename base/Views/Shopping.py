@@ -11,3 +11,6 @@ def buymed(request):
 
 def medicine(request):
      return render(request,'Buy_medicines/medicine.html')
+
+def cart(request):
+     return render(request,'Buy_medicines/cart.html')
