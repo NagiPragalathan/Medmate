@@ -14,3 +14,15 @@ def medicine(request):
 
 def cart(request):
      return render(request,'Buy_medicines/cart.html')
+
+def testimonial(request):
+     return render(request,'Buy_medicines/testimonial.html')
+
+def chackout(request):
+     return render(request,'Buy_medicines/chackout.html')
+
+def error(request):
+     return render(request,'Buy_medicines/404.html')
+
+def contact(request):
+     return render(request,'Buy_medicines/contact.html')

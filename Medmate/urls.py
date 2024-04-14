@@ -104,7 +104,10 @@ buy_medicine =[
     path('buymed',buymed,name='buymed'),
     path('medicine',medicine,name='medicine'),
     path('cart',cart,name='cart'),
-
+    path('testimonial',testimonial,name='testimonial'),
+    path('chackout',chackout,name='chackout'),
+    path('error',error,name='error'),
+    path('contact',contact,name='contact'),
 ]
 
 urlpatterns.extend(Auth)
