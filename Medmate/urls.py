@@ -101,6 +101,16 @@ e_commerse = [
 
 ]
 
+buy_medicine =[
+    path('buymed',buymed,name='buymed'),
+    path('medicine',medicine,name='medicine'),
+    path('cart',cart,name='cart'),
+    path('testimonial',testimonial,name='testimonial'),
+    path('chackout',chackout,name='chackout'),
+    path('error',error,name='error'),
+    path('contact',contact,name='contact'),
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
@@ -110,5 +120,6 @@ urlpatterns.extend(VideoConsult)
 urlpatterns.extend(DocumetsUrls)
 urlpatterns.extend(medical)
 urlpatterns.extend(e_commerse)
+urlpatterns.extend(buy_medicine)
 urlpatterns.extend(CareTakerUrl)
 
