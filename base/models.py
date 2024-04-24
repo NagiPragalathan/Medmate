@@ -67,9 +67,29 @@ class UserRole(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey field for the User model
     ROLE_CHOICES = (
-        ('admin', 'Admin'),
-        ('user', 'User'),
+        ('doctor', 'Doctor'),
+        ('patient', 'Patient'),
     )
     role = models.CharField(max_length=50, choices=ROLE_CHOICES)
-    
-    
+
+
+class DoctorConsultRequest(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    doctor_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctor_requests')
+    patient_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient_requests')
+    time = models.DateTimeField()
+    message = models.TextField()
+    last_updated_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.id)
+
+class DoctorRating(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    doctor_usr_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings_given')
+    usrid = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings_received')
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
+    updated_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Rating for Doctor {self.doctor_usr_id.username} by {self.usrid.username}: {self.rating}"

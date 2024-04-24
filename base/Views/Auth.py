@@ -23,6 +23,9 @@ def signup_view(request):
         user_type = request.POST.get('userType')
         print(username, password)
         user = User.objects.create_user(username=username, password=password)
+        user_Role = UserRole(user=user, role=user_type)
+        user_Role.save()
+        
         if user is not None:
             login(request, user)
             return redirect('home')  # Redirect to home page after successful signup

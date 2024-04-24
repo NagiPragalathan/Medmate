@@ -28,13 +28,13 @@ from base.Views.Shopping import *
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
+from base.Views.doctor import *
+from base.Views.HeartRate import *
 
 
 
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-]
+urlpatterns = []
 
 NotifyUrls = [
     path('add_notify', add_notification, name='add_notify'),
@@ -116,6 +116,15 @@ buy_medicine =[
     path('contact',contact,name='contact'),
 ]
 
+doctorUrl = [
+    path('doctor-list',DoctorList,name='DoctorList'),
+    path('show_data',show_data,name='show_data'),
+]
+
+heart_rate = [
+    path('rate',get_rate,name='get_rate'),
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
@@ -126,5 +135,7 @@ urlpatterns.extend(DocumetsUrls)
 urlpatterns.extend(medical)
 urlpatterns.extend(e_commerse)
 urlpatterns.extend(buy_medicine)
+urlpatterns.extend(doctorUrl)
 urlpatterns.extend(CareTakerUrl)
+urlpatterns.extend(heart_rate)
 
