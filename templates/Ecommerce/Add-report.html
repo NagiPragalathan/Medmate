@@ -1,0 +1,41 @@
+{% extends 'baseindex/index.html' %}
+{% block content %}
+  <div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Report Form</div>
+            <hr />
+            <form action="" method="">
+              <div class="form-group">
+                <label for="input-1">Report NAME</label>
+                <input type="text" class="form-control" id="input-1" placeholder="Enter Medicine Name" />
+              </div>
+              <div class="form-group">
+                <label for="input-2">Consultant Name</label>
+                <input type="text" class="form-control" id="input-2" placeholder="Enter No.of Days" />
+              </div>
+              <div class="form-group">
+                
+              </div>
+              {% comment %} <div class="form-group"> {% endcomment %}
+                
+
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                <br>
+
+              <div class="form-group">
+                <button type="submit" class="btn btn-light px-5">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+{% endblock %}
