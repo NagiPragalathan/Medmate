@@ -98,6 +98,12 @@ CareTakerUrl = [
 
 e_commerse = [
         path('dash', dash, name='dash'),
+        path('prescription/', prescription, name='prescription'),
+        path('report/', report, name='report'),
+        path('reportview/',viewreport,name='viewreport'),
+        path('viewpres/', viewprescription, name='viewprescription'),
+        path('Addpres/', Addprescription, name='Addprescription'),
+        path('Addreport/', Addreport, name='Addreport'),
 
 ]
 
