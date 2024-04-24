@@ -5,73 +5,105 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <div class="clearfix"></div>
 
-  <div class="content-wrapper">
-    <div class="container-fluid">
-      <div class="container mx-auto py-8">
-        <div class="flex justify-center items-center">
-          <h1 class="text-3xl font-bold mb-6">Add Notification</h1>
-        </div>
+  <div class="container mx-auto py-8">
+    <div class="flex justify-center items-center">
+      <h1 class="text-3xl font-bold mb-6" style="margin-top: 50px;text-align: center;">Add Notification</h1>
+    </div>
+    <div class="clearfix"></div>
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <div class="row mt-3">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Notification Table</h5>
+          <div class="table-responsive">
+                 <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tablet Name</th>
+                        <th scope="col">Notify Time</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Tablet Quantity</th>
+                        <th scope="col">Last Updated Time	</th>
+                        <th scope="col">Actions</th>
 
-        <div class="desktop-inner rounded-lg shadow-lg bg-white p-6 md:p-8 lg:p-12 md:mx-4 min-h-[50vh]">
-          <div class="overflow-x-auto">
-            <table class="w-full whitespace-nowrap min-h-[30vh]">
-              <thead class="">
-                <tr class="bg-gray-200 text-lg">
-                  <th class="px-4 py-2 text-left py-3">Tablet Name</th>
-                  <th class="px-4 py-2 text-left py-3">Notify Time</th>
-                  <th class="px-4 py-2 text-left py-3">Quantity</th>
-                  <th class="px-4 py-2 text-left py-3">Total Tablet Quantity</th>
-                  <th class="px-4 py-2 text-left py-3">Last Updated Time</th>
-                  <th class="px-4 py-2 text-left py-3">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Example data, replace with your actual data -->
-                {% for i in datas %}
-                  <tr>
-                    <td class="border px-4 py-2">{{ i.tablet_name }}</td>
-                    <td class="border px-4 py-2">{{ i.notify_time }}</td>
-                    <td class="border px-4 py-2">{{ i.quantity }}</td>
-                    <td class="border px-4 py-2">{{ i.total_tablet_quantity }}</td>
-                    <td class="border px-4 py-2">{{ i.last_updated_time }}</td>
-                    <td class="border px-4 py-2">
-                      <a href="{% url 'edit_notify' i.id %}" class="text-blue-500 hover:text-blue-700 mr-2 font-semibold">Edit</a>
-                      <a href="{% url 'delete_notify' i.id %}" class="text-red-500 hover:text-red-700 font-semibold">Delete</a>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter {{ datas }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+              </div>
+            </div>
           </div>
+    
+        
+        <tbody class="bg-white divide-y divide-gray-200">
+          <!-- Example data, replace with your actual data -->
+          {% for i in datas %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ i.tablet_name }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ i.notify_time }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ i.quantity }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ i.total_tablet_quantity }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ i.last_updated_time }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <a href="{% url 'edit_notify' i.id %}" class="text-blue-500 hover:text-blue-700 mr-2 font-semibold">Edit</a>
+                <a href="{% url 'delete_notify' i.id %}" class="text-red-500 hover:text-red-700 font-semibold">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="flex justify-center mt-6">
+      <button id="show-form-btn" class="bg-grey-200 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-xl" style="background-color: rgba(162, 190, 239, 0.2);margin-bottom: 10px;">Add Notification</button>
+    </div>
+    <div id="notification-form" class="popup-form hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-lg flex justify-center items-center w-full sm:max-w-md">
+      <span class="popup-close absolute top-0 right-0 mt-2 mr-2 text-red-500 cursor-pointer text-2xl font-bold">×</span>
+      <form method="post" class="space-y-4 text-xl w-full sm:max-w-md">
+        {% csrf_token %}
+        <div>
+          <label for="notify_time" class="block">Notify Time:</label>
+          <input type="datetime-local" id="notify_time" name="notify_time" class="w-full p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
         </div>
-
-        <div class="flex justify-center mt-6">
-          <button id="show-form-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-xl">Add Notification</button>
+        <div>
+          <label for="tablet_name" class="block">Tablet Name:</label>
+          <input type="text" id="tablet_name" name="tablet_name" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
         </div>
-        <div id="notification-form" class="popup-form hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-lg flex justify-center items-center w-[70vw]">
-          <span class="popup-close absolute top-0 right-0 mt-2 mr-2 text-red-500 cursor-pointer text-2xl font-bold">×</span>
-          <form method="post" class="space-y-4 text-xl w-[90vw] md:w-[70vw]">
-            {% csrf_token %}
-            <div>
-              <label for="notify_time" class="block">Notify Time:</label>
-              <input type="datetime-local" id="notify_time" name="notify_time" class="w-full p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
-            </div>
-            <div>
-              <label for="tablet_name" class="block">Tablet Name:</label>
-              <input type="text" id="tablet_name" name="tablet_name" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
-            </div>
-            <div>
-              <label for="quantity" class="block">Quantity:</label>
-              <input type="number" id="quantity" name="quantity" class="w-full p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
-            </div>
-            <div>
-              <label for="total_tablet_quantity" class="block">Total Tablet Quantity:</label>
-              <input type="number" id="total_tablet_quantity" name="total_tablet_quantity" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
-            </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Notification</button>
-          </form>
+        <div>
+          <label for="quantity" class="block">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" class="w-full p-2 rounded border border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
         </div>
-      </div>
+        <div>
+          <label for="total_tablet_quantity" class="block">Total Tablet Quantity:</label>
+          <input type="number" id="total_tablet_quantity" name="total_tablet_quantity" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500" />
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Notification</button>
+      </form>
+    </div>
+  </div>
+  
 
       <script>
         document.getElementById('show-form-btn').addEventListener('click', function () {
@@ -83,46 +115,5 @@
         })
       </script>
 
-      <div class="chat-bar-collapsible">
-        <button style="background-color: #80d0c7;" id="chat-button" type="button" class="collapsible">
-          Chat with us!
-          <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
-        </button>
-
-        <div class="content">
-          <div class="full-chat-block" style="width:100%;">
-            <!-- Message Container -->
-            <div class="outer-container">
-              <div class="chat-container">
-                <!-- Messages -->
-                <div id="chatbox">
-                  <h5 id="chat-timestamp"></h5>
-                  <p id="botStarterMessage" class="botText">
-                    <span>Loading...</span>
-                  </p>
-                </div>
-
-                <!-- User input box -->
-                <div class="chat-bar-input-block">
-                  <div id="userInput">
-                    <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message" />
-                    <p></p>
-                  </div>
-
-                  <div class="chat-bar-icons">
-                    <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart" onclick="heartButton()"></i>
-                    <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send" onclick="sendButton()"></i>
-                  </div>
-                </div>
-
-                <div id="chat-bar-bottom">
-                  <p></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+      
 {% endblock %}

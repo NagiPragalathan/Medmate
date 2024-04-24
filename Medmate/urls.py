@@ -117,6 +117,11 @@ buy_medicine =[
     path('contact',contact,name='contact'),
 ]
 
+ratingurl =[
+    path('rating',rating,name='rating'),
+
+]
+
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
 urlpatterns.extend(NotifyUrls)
@@ -128,4 +133,5 @@ urlpatterns.extend(medical)
 urlpatterns.extend(e_commerse)
 urlpatterns.extend(buy_medicine)
 urlpatterns.extend(CareTakerUrl)
+urlpatterns.extend(ratingurl)
 
