@@ -1,6 +1,7 @@
 # views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from base.models import UserRole
 from django.contrib.auth import authenticate, login
 
 def login_view(request):
@@ -19,6 +20,7 @@ def signup_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        user_type = request.POST.get('userType')
         print(username, password)
         user = User.objects.create_user(username=username, password=password)
         if user is not None:

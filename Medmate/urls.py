@@ -97,8 +97,7 @@ CareTakerUrl = [
 ]
 
 e_commerse = [
-        path('dash', dash, name='dash'),
-
+    path('dash', dash, name='dash'),
 ]
 
 buy_medicine =[
