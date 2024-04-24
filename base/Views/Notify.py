@@ -115,3 +115,6 @@ def edit_notification(request, notification_id):
 
 def rating(request):
         return render(request, 'Rating/rating.html')
+
+def messages(request):
+        return render(request, 'messages/message.html')

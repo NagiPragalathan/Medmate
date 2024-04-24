@@ -121,6 +121,10 @@ ratingurl =[
     path('rating',rating,name='rating'),
 
 ]
+Messages=[
+        path('messages',messages,name='messages'),
+
+]
 
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
@@ -134,4 +138,6 @@ urlpatterns.extend(e_commerse)
 urlpatterns.extend(buy_medicine)
 urlpatterns.extend(CareTakerUrl)
 urlpatterns.extend(ratingurl)
+urlpatterns.extend(Messages)
+
 
