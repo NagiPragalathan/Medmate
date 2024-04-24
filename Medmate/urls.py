@@ -116,6 +116,7 @@ buy_medicine =[
     path('contact',contact,name='contact'),
 ]
 
+<<<<<<< HEAD
 doctorUrl = [
     path('doctor-list',DoctorList,name='DoctorList'),
     path('show_data',show_data,name='show_data'),
@@ -123,6 +124,15 @@ doctorUrl = [
 
 heart_rate = [
     path('rate',get_rate,name='get_rate'),
+=======
+ratingurl =[
+    path('rating',rating,name='rating'),
+
+]
+Messages=[
+        path('messages',messages,name='messages'),
+
+>>>>>>> d2643c7d7bad76f7cbb0cd0ed067c10d57fa5dc2
 ]
 
 urlpatterns.extend(Auth)
@@ -137,5 +147,11 @@ urlpatterns.extend(e_commerse)
 urlpatterns.extend(buy_medicine)
 urlpatterns.extend(doctorUrl)
 urlpatterns.extend(CareTakerUrl)
+<<<<<<< HEAD
 urlpatterns.extend(heart_rate)
+=======
+urlpatterns.extend(ratingurl)
+urlpatterns.extend(Messages)
+
+>>>>>>> d2643c7d7bad76f7cbb0cd0ed067c10d57fa5dc2
 

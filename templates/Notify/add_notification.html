@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Notification</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+{% extends 'baseindex/index.html' %}
+{% block content %}
+<style></style>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="clearfix"></div>
+<div class="container mx-auto py-8">
+    <div class="flex justify-center items-center">
+      <h1 class="text-3xl font-bold mb-6" style="margin-top: 50px;text-align: center;">Add Notification</h1>
+    </div>
+    <div class="clearfix"></div>
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <div class="row mt-3">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Notification Table</h5>
+          <div class="table-responsive">
+                 <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tablet Name</th>
+                        <th scope="col">Notify Time</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Tablet Quantity</th>
+                        <th scope="col">Last Updated Time	</th>
+                        <th scope="col">Actions</th>
 
-    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-
-	<link rel="stylesheet" href=" {% static 'assets/css/chat.css' %} ">
-
-</head>
-<body class="bg-gray-100">
-
-    <div class="container mx-auto py-8 ">
-
-        <div class="flex justify-center items-center">
-            <h1 class="text-3xl font-bold mb-6">Add Notification</h1>
-        </div>
-
-        <div class="desktop-inner rounded-lg shadow-lg bg-white p-6 md:p-8 lg:p-12 md:mx-4 min-h-[50vh]">
-            <div class="overflow-x-auto">
-                <table class="w-full whitespace-nowrap min-h-[30vh]">
-                    <thead class="">
-                        <tr class="bg-gray-200 text-lg  ">
-                            <th class="px-4 py-2 text-left py-3 ">Tablet Name</th>
-                            <th class="px-4 py-2 text-left py-3 ">Notify Time</th>
-                            <th class="px-4 py-2 text-left py-3 ">Quantity</th>
-                            <th class="px-4 py-2 text-left py-3 ">Total Tablet Quantity</th>
-                            <th class="px-4 py-2 text-left py-3 ">Last Updated Time</th>
-                            <th class="px-4 py-2 text-left py-3 ">Actions</th>
-                        </tr>
+                      </tr>
                     </thead>
                     <tbody>
                         <!-- Example data, replace with your actual data -->
@@ -44,7 +39,7 @@
                                 <td class="border px-4 py-2">{{ i.total_tablet_quantity }}</td>
                                 <td class="border px-4 py-2">{{ i.last_updated_time }}</td>
                                 <td class="border px-4 py-2">
-                                    <a href="{% url 'edit_notify' i.id %}" class="text-blue-500 hover:text-blue-700 mr-2 font-semibold">Edit</a>
+                                    <a href="{% url 'edit_notify' i.id %}" class="text-green-500 hover:text-blue-700 mr-2 font-semibold">Edit</a>
                                     <a href="{% url 'delete_notify' i.id %}" class="text-red-500 hover:text-red-700 font-semibold">Delete</a>
                                 </td>
                             </tr>
@@ -55,7 +50,7 @@
         </div>
 
         <div class="flex justify-center mt-6">
-            <button id="show-form-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-xl">Add Notification</button>
+            <button id="show-form-btn" class="bg-grey-200 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-xl" style="background-color: rgba(162, 190, 239, 0.2);margin-bottom: 10px;">Add Notification</button>
         </div>
         <div id="notification-form" class="popup-form hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-lg flex justify-center items-center w-[70vw] ">
             <span class="popup-close absolute top-0 right-0 mt-2 mr-2 text-red-500 cursor-pointer text-2xl font-bold">×</span>
@@ -77,69 +72,10 @@
                     <label for="total_tablet_quantity" class="block">Total Tablet Quantity:</label>
                     <input type="number" id="total_tablet_quantity" name="total_tablet_quantity" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500">
                 </div>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Notification</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style="background-color: grey;">Add Notification</button>
 
             </form>
             
         </div>
     </div>
-
-    <script>
-        document.getElementById('show-form-btn').addEventListener('click', function() {
-            document.getElementById('notification-form').classList.remove('hidden');
-        });
-
-        document.querySelector('.popup-close').addEventListener('click', function() {
-            document.getElementById('notification-form').classList.add('hidden');
-        });
-    </script>
-
-    <div class="chat-bar-collapsible">
-            <button style="background-color: #80d0c7;" id="chat-button" type="button" class="collapsible">Chat with us!
-                <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
-            </button>
-      
-            <div class="content">
-                <div class="full-chat-block" style="width:100%;">
-                    <!-- Message Container -->
-                    <div class="outer-container">
-                        <div class="chat-container">
-                            <!-- Messages -->
-                            <div id="chatbox">
-                                <h5 id="chat-timestamp"></h5>
-                                <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
-                            </div>
-      
-                            <!-- User input box -->
-                            <div class="chat-bar-input-block">
-                                <div id="userInput">
-                                    <input id="textInput" class="input-box" type="text" name="msg"
-                                        placeholder="Tap 'Enter' to send a message">
-                                    <p></p>
-                                </div>
-      
-                                <div class="chat-bar-icons">
-                                    <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
-                                        onclick="heartButton()"></i>
-                                    <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
-                                        onclick="sendButton()"></i>
-                                </div>
-                            </div>
-      
-                            <div id="chat-bar-bottom">
-                                <p></p>
-                            </div>
-      
-                        </div>
-                    </div>
-      
-                </div>
-            </div>
-      
-        </div>
-    </body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src=" {% static 'scripts/responses.js' %} "></script>
-  <script src=" {% static 'scripts/chat.js' %} "></script>
-	
-</html>
+{% endblock %}
