@@ -24,7 +24,7 @@ from base.Views.CareTaker import *
 from base.Views.Documents import *
 from base.Views.Dashboard import *
 from base.Views.Shopping import *
-from base.Views.LlmAi import *
+# from base.Views.LlmAi import *
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
@@ -70,7 +70,7 @@ VideoConsult = [
 ]
 
 DocumetsUrls = [
-    path('chatbot_res', chat, name='chatbot_res'),
+    # path('chatbot_res', chat, name='chatbot_res'),
     path('add_document', add_document, name='add_document'),
     path('document_list', document_list, name='document_list'),
     path('edit_document/<uuid:document_id>', edit_document, name='edit_document'),
@@ -97,7 +97,13 @@ CareTakerUrl = [
 ]
 
 e_commerse = [
-    path('dash', dash, name='dash'),
+        path('dash', dash, name='dash'),
+        path('prescription/', prescription, name='prescription'),
+        path('report/', report, name='report'),
+        path('reportview/',viewreport,name='viewreport'),
+        path('viewpres/', viewprescription, name='viewprescription'),
+        path('Addpres/', Addprescription, name='Addprescription'),
+        path('Addreport/', Addreport, name='Addreport'),
 ]
 
 buy_medicine =[

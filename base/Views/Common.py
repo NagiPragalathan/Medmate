@@ -7,4 +7,4 @@ def home(request):
         alarm = Notification.objects.filter(user=request.user)[::-1][0]
     except:
         alarm = None
-    return render(request, 'Home/index.html', {"userTime":alarm})
+    return render(request, 'Buy_medicines/index.html', {"userTime":alarm})
