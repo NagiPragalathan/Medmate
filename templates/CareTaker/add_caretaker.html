@@ -1,19 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add CareTaker</title>
-</head>
-<body>
-    <h1>Add CareTaker</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="mailId">Email:</label><br>
-        <input type="email" id="mailId" name="mailId"><br>
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'baseindex/index.html' %}
+{% block content %}
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Add CareTaker</title>
+    </head>
+    <body>
+      <div class="clearfix"></div>
+
+      <div class="content-wrapper">
+        <div class="container-fluid">
+         
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">Add CareTaker</div>
+                <hr />
+
+                <form method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="name">Name:</label><br />
+                    <input class="form-control" type="text" id="name" name="name" /><br />
+                    <label for="mailId">Email:</label><br />
+                    <input class="form-control" type="email" id="mailId" name="mailId" /><br />
+                  </div>
+                  <button type="submit" class="btn btn-light px-5">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
+{% endblock %}
