@@ -26,3 +26,6 @@ def error(request):
 
 def contact(request):
      return render(request,'Buy_medicines/contact.html')
+
+def documents(request):
+     return render(request,'medical/documents.html')
