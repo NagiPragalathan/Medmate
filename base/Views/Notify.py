@@ -118,3 +118,7 @@ def rating(request):
 
 def messages(request):
         return render(request, 'messages/message.html')
+
+def consultmsg(request):
+        return render(request, 'messages/consult.html')
+

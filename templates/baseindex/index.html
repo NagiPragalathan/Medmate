@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+    <title>Medmate</title>
     <!-- loader -->
     <link href="{% static 'assets/css/pace.min.css' %}" rel="stylesheet" />
     <script src="{% static 'assets/js/pace.min.js' %}"></script>
@@ -29,6 +29,58 @@
     <link href="{% static 'assets/css/sidebar-menu.css' %}" rel="stylesheet" />
     <!-- Custom Style -->
     <link href="{% static 'assets/css/app-style.css' %}" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href=" {% static 'assets/css/chat.css' %} " />
+
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+
+    <script>
+      function loadGoogleTranslate() {
+        var language = document.getElementById('language').value
+        var googleTranslateScript = document.createElement('script')
+        googleTranslateScript.type = 'text/javascript'
+        googleTranslateScript.async = true
+        googleTranslateScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+        ;(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(googleTranslateScript)
+      }
+
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element')
+      }
+    </script>
+    <style>
+      #google_translate_element {
+          color: aliceblue;
+          padding: 5px 50px;
+          border: 1px solid #a5a2a2;
+          border-radius: 10px;
+          font-size: 14px;
+          line-height: 1.5;
+          background-color: rgba(169, 182, 204, 0.2);
+          height: 32px;
+          overflow: hidden;
+          margin-left: 22px;
+          display: flex;
+          align-items: flex-start;
+          padding: 1px;
+      }
+  
+      #google_translate_element select {
+          color: aliceblue;
+          /* background-color: rgba(5, 94, 248, 0.2); */
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background: transparent;
+          border: none;
+          padding-left: 5px;
+          padding-right: 20px;
+          background-repeat: no-repeat;
+          background-position: right center;
+          cursor: pointer;
+      }
+  </style>
   </head>
 
   <body class="bg-theme bg-theme1">
@@ -49,8 +101,8 @@
           </li>
 
           <li>
-            <a href="{% url 'prescription' %}"><i class="zmdi zmdi-receipt"></i>
-              <span>Prescription History</span></a>
+            <a href="{% url 'add_notify' %}"><i class="zmdi zmdi-receipt"></i>
+              <span>Add Notification</span></a>
           </li>
           <li>
             <a href=""><i class="zmdi zmdi-alarm"></i><span>Remainder</span></a>
@@ -99,16 +151,9 @@
           <li>
             <a href="{% url 'register' %}" target="_blank"><i class="zmdi zmdi-account-circle"></i> <span>Registration</span></a>
           </li> {% endcomment %}
-
-          <li class="sidebar-header">LABELS</li>
           <li>
-            <a href="javaScript:void();"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a>
-          </li>
-          <li>
-            <a href="javaScript:void();"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a>
-          </li>
-          <li>
-            <a href="javaScript:void();"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a>
+            <a href="javaScript:void();"><i class="zmdi zmdi-power"></i>
+              <span>Logout</span></a>
           </li>
         </ul>
       </div>
@@ -130,13 +175,24 @@
           </ul>
 
           <ul class="navbar-nav align-items-center right-nav-link">
-            <li class="nav-item dropdown-lg">
+            <!-- <li class="nav-item dropdown-lg">
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-envelope-open-o"></i></a>
             </li>
             <li class="nav-item dropdown-lg">
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-bell-o"></i></a>
-            </li>
-            <li class="nav-item language">
+            </li> -->
+            <div id="google_translate_element">
+            <ul style="display: none;">
+              <li class="select-opt">
+                <select name="language" id="language" onchange="loadGoogleTranslate()">
+                  <option  value="default">EN</option>
+                  <option value="Bangla">BN</option>
+                  <option value="Arabic">AB</option>
+                </select>
+              </li>
+            </ul>
+            </div>
+            <!-- <li class="nav-item language">
               <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li class="dropdown-item">
@@ -152,9 +208,11 @@
                   <i class="flag-icon flag-icon-de mr-2"></i> German
                 </li>
               </ul>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#"><span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar" /></span></a>
+              <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#"><span class="user-profile"><!-- Profile icon -->
+                <i class="zmdi zmdi-account" style="font-size: 36px; border-radius: 40%; padding: 8px; color: #fff; display: inline-flex; justify-content: center; align-items: center;"></i>
+                </span></a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li class="dropdown-item user-details">
                   <a href="javaScript:void();">
@@ -273,5 +331,83 @@
 
     <!-- Index js -->
     <script src="{% static 'assets/js/index.js' %}"></script>
+
+    <div class="chat-bar-collapsible">
+      <button id="chat-button" type="button" class="collapsible">
+        Chat with us!
+        <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+      </button>
+
+      <div class="content">
+        <div class="full-chat-block" style="width:100%;">
+          <!-- Message Container -->
+          <div class="outer-container">
+            <div class="chat-container">
+              <!-- Messages -->
+              <div id="chatbox">
+                <h5 id="chat-timestamp"></h5>
+                <p id="botStarterMessage" class="botText">
+                  <span>Loading...</span>
+                </p>
+              </div>
+
+              <!-- User input box -->
+              <div class="chat-bar-input-block">
+                <div id="userInput">
+                  <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message" />
+                  <p></p>
+                </div>
+
+                <div class="chat-bar-icons">
+                  <!-- <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart" onclick="heartButton()"></i> -->
+                  <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send" onclick="sendButton()"></i>
+                </div>
+              </div>
+
+              <div id="chat-bar-bottom">
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'scripts/responses.js' %} "></script>
+  <script src="{% static 'scripts/chat.js' %} "></script>
+
+  <script>
+		let notifytime = {{ userTime.notify_time }}
+	</script>
+
+  <script>
+		// Get the notify time value from Django template
+
+		// Function to check if the current time is within the range
+		function checkNotifyTime() {
+			let notifyTime = new Date("{{ userTime.notify_time|date:"D, d M Y H:i:s"}}");
+			// Get the current time
+			let currentTime = new Date();
+			console.log(notifyTime, currentTime)
+	
+			// Calculate the time 10 seconds after notify time
+			let endTime = new Date(notifyTime.getTime() + 10 * 1000);
+	
+			// Check if the current time is between notify time and 10 seconds after that
+			if (currentTime >= notifyTime && currentTime <= endTime) {
+				// Redirect to another page
+				console.log("running..!")
+				window.location.href = "{% url 'notification' %}";
+
+			}else{
+				console.log("missed")
+			}
+		}
+		console.log("start..!")
+	
+		// Call checkNotifyTime function every 2 seconds using setInterval
+		setInterval(checkNotifyTime, 2000);
+	</script>
+
   </body>
 </html>

@@ -1,0 +1,155 @@
+{% extends 'baseindex/index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <link href= 
+"https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" 
+          rel="stylesheet"> 
+</head>
+<body>
+   
+    <!-- component -->
+    <!-- component -->
+<!-- Code on GiHub: https://github.com/vitalikda/form-floating-labels-tailwindcss -->
+<style>
+    .-z-1 {
+      z-index: -1;
+    }
+  
+    .origin-0 {
+      transform-origin: 0%;
+    }
+  
+    input:focus ~ label,
+    input:not(:placeholder-shown) ~ label,
+    textarea:focus ~ label,
+    textarea:not(:placeholder-shown) ~ label,
+    select:focus ~ label,
+    select:not([value='']):valid ~ label {
+      /* @apply transform; scale-75; -translate-y-6; */
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      --tw-scale-x: 0.75;
+      --tw-scale-y: 0.75;
+      --tw-translate-y: -1.5rem;
+    }
+  
+    input:focus ~ label,
+    select:focus ~ label {
+      /* @apply text-black; left-0; */
+      --tw-text-opacity: 1;
+      color: rgba(0, 0, 0, var(--tw-text-opacity));
+      left: 0px;
+    }
+
+    <style>
+    .border-bottom {
+        border-bottom: 2px solid #000; /* Black border color */
+    }
+
+    input:focus ~ label,
+    input:not(:placeholder-shown) ~ label,
+    textarea:focus ~ label,
+    textarea:not(:placeholder-shown) ~ label,
+    select:focus ~ label,
+    select:not([value='']):valid ~ label {
+        transform: translateX(0) translateY(-1.5rem) rotate(0) skewX(0) skewY(0) scaleX(0.75) scaleY(0.75);
+        transition: transform 0.3s ease;
+    }
+
+    input:focus ~ label,
+    select:focus ~ label {
+        color: #000; /* Black text color */
+        left: 0;
+    }
+</style>
+
+  </style>
+  <br><br><br><br>
+    <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+      <h1 class="text-2xl font-bold mb-8" style="color: black;">Request Form </h1>
+      <form id="form" novalidate>
+        
+  
+        <div class="flex flex-row space-x-4">
+          <div class="relative z-0 w-full mb-5">
+            <input style="color: black;"
+              type="text"
+              name="date"
+              placeholder=" "
+              onclick="this.setAttribute('type', 'date');"
+              class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-b border-gray-400 focus:outline-none focus:ring-0 focus:border-black" 
+              />
+            <label for="date" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Date</label>
+            <span class="text-sm text-red-600 hidden" id="error">Date is required</span>
+          </div>
+          <div class="relative z-0 w-full">
+            <div class="relative z-0 w-full mb-5">
+                <input
+                style="color: black;"
+                    type="text"
+                    name="time"
+                    placeholder=" "
+                    onclick="this.setAttribute('type', 'time');"
+                    class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-b border-gray-400 focus:outline-none focus:ring-0 focus:border-black" 
+                />
+                <label for="time" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Time</label>
+                <span class="text-sm text-red-600 hidden" id="error">Time is required</span>
+            </div>
+            <div style="width: max-content;">
+                <div class="relative z-0 w-full mb-5 border border-black rounded">
+                    <textarea
+                    style="color: black;"
+                        name="message"
+                        placeholder=" "
+                        class="pt-3 pb-2 pl-5 block w-full px-0 mt-0 bg-transparent border-0 focus:outline-none focus:ring-0 focus:border-black"
+                    ></textarea>
+                    <label for="message" class="absolute duration-300 top-3 left-5 -z-1 origin-0 text-gray-500">Message</label>
+                </div>
+            </div>
+        <button style="margin-left: -100px;"
+          id="button"
+          type="button"
+          class="w-full px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-gray-500 hover:bg-gray-600 hover:shadow-lg focus:outline-none"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    'use strict'
+  
+    document.getElementById('button').addEventListener('click', toggleError)
+    const errMessages = document.querySelectorAll('#error')
+  
+    function toggleError() {
+      // Show error message
+      errMessages.forEach((el) => {
+        el.classList.toggle('hidden')
+      })
+  
+      // Highlight input and label with red
+      const allBorders = document.querySelectorAll('.border-gray-200')
+      const allTexts = document.querySelectorAll('.text-gray-500')
+      allBorders.forEach((el) => {
+        el.classList.toggle('border-red-600')
+      })
+      allTexts.forEach((el) => {
+        el.classList.toggle('text-red-600')
+      })
+    }
+  </script>
+</body>
+</html>
+{% endblock %} 
+<!-- component -->

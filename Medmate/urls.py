@@ -123,6 +123,7 @@ ratingurl =[
 ]
 Messages=[
         path('messages',messages,name='messages'),
+        path('consultmsg',consultmsg,name='consultmsg'),
 
 ]
 
