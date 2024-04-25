@@ -1,0 +1,90 @@
+{% extends 'baseindex/index.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <link href= 
+"https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" 
+          rel="stylesheet"> 
+</head>
+<body>
+   <!-- component -->
+    <div class="container">
+        <div class="card bg-white py-3 px-5 rounded-xl flex flex-col mb-6" style="width: 50%;margin-left: 33%;margin-top: 10%;"><br>
+            <div class="md:px-2 mt-0 md:mt-0 items-center flex justify-end" >
+                <button id="show-form-btn" class="bg-gray-500 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-gray-600" style="margin-top: 10px;">Upload</button>
+            </div>
+            <br>
+            <div class="w-full">
+                <div class="py-3 px-5 mb-4 bg-blue-100 text-blue-900 text-sm rounded-md border border-blue-200" role="alert" style="display: flex; justify-content: space-between;">
+                    <div>Document Name </div>
+                    <div class="md:px-2 mt-3 md:mt-0 items-center flex">
+                        <button class="bg-gray-500 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-gray-600">View</button>
+                    </div>
+                </div>
+
+
+                <div class="w-full">
+                    <div class="py-3 px-5 mb-4 bg-blue-100 text-blue-900 text-sm rounded-md border border-blue-200" role="alert" style="display: flex; justify-content: space-between;">
+                        <div>Document Name </div>
+                        <div class="md:px-2 mt-3 md:mt-0 items-center flex">
+                            <button class="bg-gray-500 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-gray-600">View</button>
+                        </div>
+                    </div>
+
+                    <div class="w-full">
+                        <div class="py-3 px-5 mb-4 bg-blue-100 text-blue-900 text-sm rounded-md border border-blue-200" role="alert" style="display: flex; justify-content: space-between;">
+                            <div>Document Name </div>
+                            <div class="md:px-2 mt-3 md:mt-0 items-center flex">
+                                <button class="bg-gray-500 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-gray-600">View</button>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <div class="py-3 px-5 mb-4 bg-blue-100 text-blue-900 text-sm rounded-md border border-blue-200" role="alert" style="display: flex; justify-content: space-between;">
+                                <div>Document Name </div>
+                                <div class="md:px-2 mt-3 md:mt-0 items-center flex">
+                                    <button class="bg-gray-500 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-gray-600">View</button>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="py-3 px-5 mb-4 bg-blue-100 text-blue-900 text-sm rounded-md border border-blue-200" role="alert" style="display: flex; justify-content: space-between;">
+                                    <div>Document Name </div>
+                                    <div class="md:px-2 mt-3 md:mt-0 items-center flex">
+                                        <button class="bg-gray-500 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-gray-600">View</button>
+                                    </div>
+                                </div>
+            </div>
+        </div>
+
+        <div id="notification-form" class="popup-form hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray p-8 rounded-lg shadow-lg flex justify-center items-center w-full sm:max-w-md"  style="background-color: rgb(176, 176, 176);">
+            <span class="popup-close absolute top-0 right-0 mt-2 mr-2 text-red-500 cursor-pointer text-2xl font-bold">×</span>
+            <form method="post" class="space-y-4 text-xl w-full sm:max-w-md">
+              {% csrf_token %}
+              
+              <div>
+                <label for="tablet_name" class="block text-black">Type :</label>
+                <input type="text" id="tablet_name" name="tablet_name" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500 text-black" /> <!-- Added text-black class -->
+              </div>
+              <div>
+                <label for="tablet_name" class="block text-black"> Name:</label>
+                <input type="text" id="tablet_name" name="tablet_name" class="w-full p-2 border rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500 text-black" /> <!-- Added text-black class -->
+              </div>
+              <button type="submit" class="bg-gray-500 hover:bg-gray-700 text-white font- py-2 px-4 rounded">Submit</button>
+            </form>
+            
+        </div>
+    </div>
+    <script>
+        document.getElementById('show-form-btn').addEventListener('click', function () {
+          document.getElementById('notification-form').classList.remove('hidden')
+        })
+        document.querySelector('.popup-close').addEventListener('click', function () {
+          document.getElementById('notification-form').classList.add('hidden')
+        })
+      </script>
+</body>
+</html>
+{% endblock %} 
+<!-- component -->
