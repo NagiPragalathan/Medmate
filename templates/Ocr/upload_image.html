@@ -1,4 +1,6 @@
 <!-- upload_image.html -->
+{% extends 'baseindex/index.html' %}
+{% block content %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -24,6 +26,7 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 40%;
         }
 
         h1 {
@@ -76,11 +79,11 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="container" >
         <h1>Upload Image</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="drop-area" id="dropArea">
+            <div class="drop-area" id="dropArea" style="color: rgb(166, 162, 162);">
                 <p>Drag and drop files here or click to select files</p>
             </div>
             <input type="file" name="image" id="fileInput">
@@ -188,3 +191,5 @@
 <script src=" {% static 'scripts/chat.js' %} "></script>
 
 </html>
+{% endblock %} 
+

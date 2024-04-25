@@ -133,6 +133,11 @@ ratingurl =[
 ]
 Messages=[
         path('messages',messages,name='messages'),
+<<<<<<< HEAD
+        path('consultmsg',consultmsg,name='consultmsg'),
+
+=======
+>>>>>>> 30913a3613c16a1683579ef2a3a3a0f7edd717e0
 ]
 
 urlpatterns.extend(Auth)
