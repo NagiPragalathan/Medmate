@@ -104,6 +104,9 @@ e_commerse = [
         path('viewpres/', viewprescription, name='viewprescription'),
         path('Addpres/', Addprescription, name='Addprescription'),
         path('Addreport/', Addreport, name='Addreport'),
+        path('profile/', profile, name='profile'),
+        path('calendar/', calendar, name='calendar'),
+        path('create_or_update_user_profile', create_or_update_user_profile, name='create_or_update_user_profile'),
 
 ]
 

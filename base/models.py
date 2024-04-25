@@ -32,6 +32,7 @@ class Product(models.Model):
         return self.product_name
 
 
+
 class UserProduct(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey field for the User model
@@ -60,3 +61,20 @@ class CareTaker(models.Model):
 
     def __str__(self):
         return self.name
+    
+class UserProfile(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    change_profile = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    background_image = models.ImageField(upload_to='backgrounds/', blank=True, null=True)
+    address_street = models.CharField(max_length=255, blank=True, null=True)
+    address_city = models.CharField(max_length=100, blank=True, null=True)
+    address_state = models.CharField(max_length=100, blank=True, null=True)
+    username = models.CharField(max_length=100, unique=True)
+   
+    biography = models.TextField(blank=True, null=True)
+    experience = models.FileField(upload_to='experiences/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.username} - {self.email}"
