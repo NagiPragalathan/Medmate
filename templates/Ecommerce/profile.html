@@ -11,12 +11,26 @@
               <div class="col-lg-4">
                 <div class="card profile-card-2">
                   <div class="card-img-block">
-                    <img class="img-fluid" src="https://via.placeholder.com/800x500" alt="Card image cap" />
+                    <div class="card-img-block">
+                      {% if user_data.background_image %}
+                          <img class="img-fluid" src="{{ user_data.background_image}}" alt="Card image cap" />
+                      {% else %}
+                          <img class="img-fluid" src="https://via.placeholder.com/800x500" alt="Card image cap" />
+                      {% endif %}
                   </div>
+                  
+                  </div>
+               
+
                   <div class="card-body pt-5">
+                    {{ user_data.change_profile }}
+                    {% if user_data.change_profile %}
+                    <img src="{{ user_data.change_profile }}" alt="profile-image" class="profile" />
+                {% else %}
                     <img src="https://via.placeholder.com/110x110" alt="profile-image" class="profile" />
-                    <h5 class="card-title">Mark Stern</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                {% endif %}
+                    <h5 class="card-title">{{user_data.username}}</h5>
+                    <p class="card-text">{{user_data.biography}}</p>
                     <div class="icon-block">
                       <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>
                       <a href="javascript:void();"><i class="fa fa-twitter bg-twitter text-white"></i></a>
@@ -111,21 +125,22 @@
                         <h5 class="mb-3">User Profile</h5>
                         <div class="row">
                           <div class="col-md-6">
-                            <h6>About</h6>
-                            <p>Web Designer, UI/UX Engineer</p>
-                            <h6>Hobbies</h6>
-                            <p>Indie music, skiing and hiking. I love the great outdoors.</p>
+                            <h6>Bio</h6>
+                            <p>{{user_data.biography}} </p>
+                            <h6>FIRST NAME :{{user_data.firstname}}</h6>
+                            <h6>LAST NAME :{{user_data.lastname}}</h6>
+                            <h6>EMAIL :{{user_data.email}}</h6>
+                            <h6>EXPERIENCE :{{user_data.experience}}</h6>
+                           
+                            
                           </div>
                           <div class="col-md-6">
-                            <h6>Recent badges</h6>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">html5</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">react</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">codeply</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">angularjs</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">css3</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">jquery</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">bootstrap</a>
-                            <a href="javascript:void();" class="badge badge-dark badge-pill">responsive-design</a>
+                            <h6>ADDRESS</h6>
+                            <a href="javascript:void();" >{{user_data.address_state}}</a>
+                            <a href="javascript:void();" >{{user_data.address_city}}</a>
+                            <a href="javascript:void();" >{{user_data.address_street}}</a>
+                            {% comment %} <a href="javascript:void();" class="badge badge-dark badge-pill">angularjs</a> {% endcomment %}
+                            
                             <hr />
                             <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
                             <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
@@ -234,13 +249,13 @@
                           <div class="form-group row">
                             <label for="change_profile" class="col-lg-3 col-form-label form-control-label">Change profile</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="file" id="change_profile" name="change_profile" accept="image/*" />
+                              <input class="form-control" type="file" id="change_profile" name="change_profile" accept="image/*" value="{{user_data.change_profile}}"   required/>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="background_image" class="col-lg-3 col-form-label form-control-label">Change Background profile</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="file" id="background_image" name="background_image" accept="image/*" />
+                              <input class="form-control" type="file" id="background_image" name="background_image" value="{{user_data.background_image}}"  accept="image/*" required/>
                             </div>
                           </div>
                           <div class="form-group row">
