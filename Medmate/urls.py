@@ -87,6 +87,7 @@ DocumetsUrls = [
 
 medical = [
     path('Shoppingview', Shoppingview, name='Shoppingview'),
+    path('documents', documents, name='documents'),
 
 ]
 
@@ -134,6 +135,8 @@ ratingurl =[
 ]
 Messages=[
         path('messages',messages,name='messages'),
+        path('consultmsg',consultmsg,name='consultmsg'),
+
 ]
 EProducts = [
     path('add_product', add_product, name='add_product'),
