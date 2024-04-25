@@ -216,19 +216,19 @@
                           <div class="form-group row">
                             <label  for="firstname" class="col-lg-3 col-form-label form-control-label">First name</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="text" id="firstname" name="firstname" required />
+                              <input class="form-control" type="text" id="firstname" name="firstname" value="{{user_data.firstname}}" required />
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="lastname" class="col-lg-3 col-form-label form-control-label">Last name</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="text" d="lastname" name="lastname" required/>
+                              <input class="form-control" type="text" d="lastname" name="lastname" value="{{user_data.lastname}}" required/>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="email" class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="email" id="email" name="email" required />
+                              <input class="form-control" type="email" id="email" name="email" value="{{user_data.email}}"  required />
                             </div>
                           </div>
                           <div class="form-group row">
@@ -246,40 +246,35 @@
                           <div class="form-group row">
                           <label class="col-lg-3 col-form-label form-control-label" for="experience">Experience:</label>
                           <div class="col-lg-9">
-                             <input type="text" id="experience" name="experience" ><br><br>
+                             <input type="text" id="experience" name="experience"  value="{{user_data.experience}}" ><br><br>
                             </div>
                           </div>
+                          
                           <div class="form-group row">
                             <label for="address_street" class="col-lg-3 col-form-label form-control-label">Address</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="text" id="address_street" name="address_street"  placeholder="Street" />
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="address_street" class="col-lg-3 col-form-label form-control-label">Address</label>
-                            <div class="col-lg-9">
-                              <input class="form-control" type="text" id="address_street" name="address_street"  placeholder="Street" />
+                              <input class="form-control" type="text" id="address_street" name="address_street" value="{{user_data.address_street}}"   placeholder="Street" />
                             </div>
                           </div>
                           <div class="form-group row">
                             <label  class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-6">
-                              <input class="form-control" type="text"  id="address_city" name="address_city" placeholder="City" />
+                              <input class="form-control" type="text"  id="address_city" name="address_city" placeholder="City" value="{{user_data.address_city}}"  />
                             </div>
                             <div class="col-lg-3">
-                              <input class="form-control" type="text" id="address_state" name="address_state"placeholder="State" />
+                              <input class="form-control" type="text" id="address_state" name="address_state"placeholder="State" value="{{user_data.address_state}}" />
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label for="username" class="col-lg-3 col-form-label form-control-label">Username</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="text" id="username" name="username" required />
+                              <input class="form-control" type="text" id="username" name="username" required value="{{user_data.username}}"  />
                             </div>
                           <div class="form-group row">
                             <label for="biography" class="col-lg-3 col-form-label form-control-label">User Bio</label>
                             <div class="col-lg-9">
-                              <input class="form-control" type="text" id="biography" name="biography" />
+                              <input class="form-control" type="text" id="biography" name="biography"  value="{{user_data.biography}}" />
                             </div>
                           </div>
                          
