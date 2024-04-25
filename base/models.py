@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import uuid
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-
+from django.utils.timezone import now
 class Notification(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -111,3 +111,17 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.username} - {self.email}"
+    
+
+    
+class EProduct(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    product_name = models.CharField(max_length=100)
+    product_image = models.ImageField(upload_to='product/', blank=True, null=True)
+    description = models.CharField(max_length=200)
+    product_type = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    last_added_date = models.DateTimeField(default=now)  # Automatically sets the field to now
+
+    def __str__(self):
+        return self.product_name
