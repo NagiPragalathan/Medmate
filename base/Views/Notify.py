@@ -112,3 +112,9 @@ def edit_notification(request, notification_id):
         return redirect('add_notify')  # Redirect to notification list view
 
     return render(request, 'Notify/edit_notification.html', {'notification': notification})
+
+def rating(request):
+        return render(request, 'Rating/rating.html')
+
+def messages(request):
+        return render(request, 'messages/message.html')

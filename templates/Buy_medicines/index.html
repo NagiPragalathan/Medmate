@@ -81,9 +81,17 @@
                                 <i class="fa fa-shopping-bag fa-2x" style="color: #00557a;"></i>
                                 <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                             </a>
-                            <a href="#" class="my-auto">
-                                <i class="fas fa-user fa-2x" style="color: #00557a;"></i>
-                            </a>
+                            <div class="dropdown">
+                                <a class="my-auto" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="fas fa-user fa-2x" style="color: #00557a;"></i>
+                                </a>
+                              
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <li><a class="dropdown-item" href="{% url 'signup' %}">Signup</a></li>
+                                  <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+                                </ul>
+                              </div>
+                              
                         </div>
                     </div>
                 </nav>
@@ -118,7 +126,7 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">
                         <h4 class="mb-3 "  >Convenience Meets Care</h4>
-                        <h1 class="mb-5 display-3 " style="color: #254958;" > Order Medicines Anytime, Anywhere</h1>
+                        <h1 class="mb-5 display-3 " style="color: #254958;font-size: 50px;" > Revolutionizing healthcare with seamless integration and trusted assistance.</h1>
                         <div class="position-relative mx-auto">
                           <a href="{% url 'dash' %}"><button type="submit" class="btn btn- border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0;left: 0%; background-color: #00557a;">Workspace</button></a>  
                         </div>
