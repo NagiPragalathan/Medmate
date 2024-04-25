@@ -59,6 +59,10 @@
             <a href=""><i class="zmdi zmdi-phone-in-talk"></i><span>Consult Now</span></a>
           </li>
           <li>
+            <a href="{% url 'add_caretaker' %}"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Care Taker</span></a>
+          </li>
+            
+          <li>
             <a href="{% url 'report' %}"><i class="zmdi zmdi-file-text"></i>
               <span> Report</span></a>
           </li>
@@ -82,15 +86,14 @@
           </li>
 
           <li>
-            <a href="">
+            <a href="{% url 'calendar' %}">
               <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
               <small class="badge float-right badge-light">New</small>
             </a>
           </li>
 
           <li>
-            <a href=""><i class="zmdi zmdi-account"></i>
-              <span>Profile</span></a>
+            <a href="{% url 'profile' %}"><i class="zmdi zmdi-face"></i> <span>Profile</span></a>
           </li>
 
           {% comment %} <li>
