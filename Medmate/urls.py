@@ -28,13 +28,13 @@ from base.Views.Shopping import *
 from django.views.static import serve
 from Medmate import settings
 from base.Views.Ocr import *
+from base.Views.doctor import *
+from base.Views.HeartRate import *
 
 
 
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-]
+urlpatterns = []
 
 NotifyUrls = [
     path('add_notify', add_notification, name='add_notify'),
@@ -104,6 +104,9 @@ e_commerse = [
         path('viewpres/', viewprescription, name='viewprescription'),
         path('Addpres/', Addprescription, name='Addprescription'),
         path('Addreport/', Addreport, name='Addreport'),
+        path('profile/', profile, name='profile'),
+        path('calendar/', calendar, name='calendar'),
+        path('create_or_update_user_profile', create_or_update_user_profile, name='create_or_update_user_profile'),
 
 ]
 
@@ -117,14 +120,24 @@ buy_medicine =[
     path('contact',contact,name='contact'),
 ]
 
+doctorUrl = [
+    path('doctor-list',DoctorList,name='DoctorList'),
+    path('show_data',show_data,name='show_data'),
+]
+
+heart_rate = [
+    path('rate',get_rate,name='get_rate'),
+]
 ratingurl =[
     path('rating',rating,name='rating'),
-
 ]
 Messages=[
         path('messages',messages,name='messages'),
+<<<<<<< HEAD
         path('consultmsg',consultmsg,name='consultmsg'),
 
+=======
+>>>>>>> 30913a3613c16a1683579ef2a3a3a0f7edd717e0
 ]
 
 urlpatterns.extend(Auth)
@@ -137,8 +150,9 @@ urlpatterns.extend(DocumetsUrls)
 urlpatterns.extend(medical)
 urlpatterns.extend(e_commerse)
 urlpatterns.extend(buy_medicine)
+urlpatterns.extend(doctorUrl)
 urlpatterns.extend(CareTakerUrl)
 urlpatterns.extend(ratingurl)
 urlpatterns.extend(Messages)
-
+urlpatterns.extend(heart_rate)
 

@@ -1,42 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareTaker List</title>
-    <style>
+{% extends 'baseindex/index.html' %}
+{% block content %}
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>CareTaker List</title>
+      {% comment %} <style>
         table {
-            width: 100%;
-            border-collapse: collapse;
+          width: 100%;
+          border-collapse: collapse;
         }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
+        th,
+        td {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
         }
         th {
-            background-color: #f2f2f2;
+          background-color: #f2f2f2;
         }
-    </style>
-</head>
-<body>
-    <h1>CareTaker List</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-        {% for caretaker in caretakers %}
+      </style> {% endcomment %}
+    </head>
+    <body>
+      <div class="clearfix"></div>
+
+      <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row mt-3">
+                
+                  <div class="card">
+                    <div class="card-body">
+         
+          <h5 class="card-title">CareTaker List</h5>
+          <div class="table-responsive">
+           <table class="table">
+            <thead>
             <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Actions</th>
+            </tr>
+        </thead>
+            {% for caretaker in caretakers %}
+            <tbody>
+                <tr>
                 <td>{{ caretaker.name }}</td>
                 <td>{{ caretaker.mailId }}</td>
                 <td>
-                    <a href="{% url 'caretaker_edit' caretaker.id %}">Edit</a>
-                    <a href="{% url 'caretaker_delete' caretaker.id %}">Delete</a>
+                  <a href="{% url 'caretaker_edit' caretaker.id %}">Edit</a>
+                  <a href="{% url 'caretaker_delete' caretaker.id %}">Delete</a>
                 </td>
-            </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+              </tr>
+            </tbody>
+            {% endfor %}
+      
+          </table>
+        </div>
+      </div>
+                  </div>
+    </body>
+  </html>
+{% endblock %}

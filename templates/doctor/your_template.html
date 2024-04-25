@@ -1,0 +1,88 @@
+<!-- your_template.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Data Chart</title>
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Include jQuery -->
+</head>
+<body>
+    <h1>Sensor Data Chart</h1>
+    <!-- Create a canvas element for the chart -->
+    <canvas id="sensorChart" width="400" height="400"></canvas>
+
+    <script>
+        // Initialize empty data array for the chart
+        var chartData = [];
+
+        // Create a new chart object
+        var ctx = document.getElementById('sensorChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Sensor Data',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Function to add data to the chart
+        function addData(data) {
+            // Add new data point to the chart
+            myChart.data.labels.push('');
+            myChart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data);
+            });
+            // Limit the number of data points to display
+            const maxDataPoints = 10;
+            if (myChart.data.labels.length > maxDataPoints) {
+                myChart.data.labels.shift();
+                myChart.data.datasets.forEach((dataset) => {
+                    dataset.data.shift();
+                });
+            }
+            // Update the chart
+            myChart.update();
+        }
+
+        // Function to fetch sensor data from the server
+        function fetchSensorData() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/rate',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Call addData function with received data
+                    addData(response.sensor_data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching sensor data:', error);
+                }
+            });
+        }
+
+        // Call fetchSensorData function to fetch initial sensor data
+        fetchSensorData();
+
+        // Function to fetch sensor data periodically
+        setInterval(fetchSensorData, 5000); // Fetch data every 5 seconds
+    </script>
+</body>
+</html>

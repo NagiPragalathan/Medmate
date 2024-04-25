@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 class Notification(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -32,6 +34,7 @@ class Product(models.Model):
         return self.product_name
 
 
+
 class UserProduct(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey field for the User model
@@ -60,3 +63,51 @@ class CareTaker(models.Model):
 
     def __str__(self):
         return self.name
+    
+class UserRole(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey field for the User model
+    ROLE_CHOICES = (
+        ('doctor', 'Doctor'),
+        ('patient', 'Patient'),
+    )
+    role = models.CharField(max_length=50, choices=ROLE_CHOICES)
+
+
+class DoctorConsultRequest(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    doctor_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='doctor_requests')
+    patient_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='patient_requests')
+    time = models.DateTimeField()
+    message = models.TextField()
+    last_updated_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.id)
+
+class DoctorRating(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    doctor_usr_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings_given')
+    usrid = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings_received')
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
+    updated_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Rating for Doctor {self.doctor_usr_id.username} by {self.usrid.username}: {self.rating}"
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    change_profile = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    background_image = models.ImageField(upload_to='backgrounds/', blank=True, null=True)
+    address_street = models.CharField(max_length=255, blank=True, null=True)
+    address_city = models.CharField(max_length=100, blank=True, null=True)
+    address_state = models.CharField(max_length=100, blank=True, null=True)
+    username = models.CharField(max_length=100, unique=True)
+    biography = models.TextField(blank=True, null=True)
+    experience = models.FileField(upload_to='experiences/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.username} - {self.email}"
