@@ -30,6 +30,7 @@ from Medmate import settings
 from base.Views.Ocr import *
 from base.Views.doctor import *
 from base.Views.HeartRate import *
+from base.Views.Ecommerce import *
 
 
 
@@ -137,6 +138,12 @@ Messages=[
         path('consultmsg',consultmsg,name='consultmsg'),
 
 ]
+EProducts = [
+    path('add_product', add_product, name='add_product'),
+    path('list_product', list_products, name='list_products'),
+    path('edit_product<uuid:id>/', edit_product, name='edit_product'),
+    path('delete_product<uuid:id>/', delete_product, name='delete_product'),
+]
 
 urlpatterns.extend(Auth)
 urlpatterns.extend(Ocr)
@@ -153,4 +160,5 @@ urlpatterns.extend(CareTakerUrl)
 urlpatterns.extend(ratingurl)
 urlpatterns.extend(Messages)
 urlpatterns.extend(heart_rate)
+urlpatterns.extend(EProducts)
 
