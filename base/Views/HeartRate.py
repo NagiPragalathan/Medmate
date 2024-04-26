@@ -1,16 +1,15 @@
-# views.py
-
 from django.http import StreamingHttpResponse
 from django.template.loader import render_to_string
 import serial
 from django.shortcuts import render
 
-CFG_comport = 'COM3'
+CFG_comport = 'COM5'
 CFG_baudrate = 115200
 CFG_serial_timeout = 1
 CFG_no_arduino = False
 
 def read_sensor_data():
+    ser = None  # Initialize ser outside of the conditional block
     try:
         if not CFG_no_arduino:
             print('Reading from serial port %s...' % CFG_comport)
@@ -24,15 +23,17 @@ def read_sensor_data():
                 print("Received data:", data.strip())
                 yield data.strip()  # Yield the data instead of returning it
             else:
-                data = ser.readline().decode('ascii').strip()
-                print("Received data:", data)
-                yield data.strip()  # Yield the data instead of returning it
+                if ser and ser.is_open:  # Check if ser is not None and is open
+                    data = ser.readline().decode('ascii').strip()
+                    print("Received data:", data)
+                    yield data.strip()  # Yield the data instead of returning it
     except Exception as e:
         print("An error occurred:", str(e))
     finally:
-        # if not CFG_no_arduino:
-        #     ser.close()
-        pass
+        if ser and ser.is_open:  # Close the serial port if it's open
+            ser.close()
+
+
 
 def sensor_data_stream():
     for sensor_data in read_sensor_data():

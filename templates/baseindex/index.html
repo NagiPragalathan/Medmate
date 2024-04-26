@@ -107,9 +107,9 @@
           <li>
             <a href="{% url 'add_notify' %}"><i class="zmdi zmdi-alarm"></i><span>Remainder</span></a>
           </li>
-          <li>
+          {% comment %} <li>
             <a href="{% url 'meeting' %}"><i class="zmdi zmdi-phone-in-talk"></i><span>Consult Now</span></a>
-          </li>
+          </li> {% endcomment %}
           <li>
             <a href="{% url 'add_caretaker' %}"><i class="zmdi zmdi-format-list-bulleted"></i> <span> Care Taker</span></a>
           </li>
@@ -140,7 +140,7 @@
           <li>
             <a href="{% url 'calendar' %}">
               <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
-              <small class="badge float-right badge-light">New</small>
+            
             </a>
           </li>
 
@@ -255,7 +255,14 @@
       <!-- End topbar header -->
       <div>
         {% block content %}
+        
+        <div class="clearfix"></div>
 
+        <div class="content-wrapper">
+          <div class="container-fluid">
+<h1 style="margin: 0 auto; margin-top: 20%;margin-left: 15%;">Welcome to MedMate!!</h1>
+          </div>
+        </div></div>
         {% endblock %}
       </div>
       
