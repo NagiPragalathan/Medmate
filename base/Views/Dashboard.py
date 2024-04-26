@@ -18,6 +18,8 @@ def Addreport(request):
     return render(request,'Ecommerce/Add-report.html')
 def calendar(request):
     return render(request,'Ecommerce/calendar.html')
+def Ambulance(request):
+    return render(request,'Ecommerce/home.html')
 
   # Note: csrf_exempt is used here for simplification, be sure to handle CSRF protection appropriately in production.
 
