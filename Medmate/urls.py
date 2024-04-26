@@ -129,6 +129,7 @@ doctorUrl = [
 
 heart_rate = [
     path('rate',get_rate,name='get_rate'),
+    path('heat_sen',sensor_data_stream,name='sensor_data_stream'),
 ]
 ratingurl =[
     path('rating',rating,name='rating'),
