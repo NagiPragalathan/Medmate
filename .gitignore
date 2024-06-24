@@ -1,20 +1,89 @@
-# Django
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django stuff:
 *.log
 *.pot
 *.pyc
-__pycache__/
-local_settings.py
+*.pyo
+*.db
+*.sqlite3
+
+# If you are using Django's default DB
 db.sqlite3
+*.sqlite3
+
+# Translations
+*.mo
+*.pot
+
+# Django static files
+staticfiles/
+
+# Media files
 media/
+
+# Local environment settings
 .env
-llmFolder/
-<<<<<<< HEAD
-yolov3.weights
-*.weights
-saved_images
-=======
-med/
-yolov3.weights
-*.weights
->>>>>>> 1101cd9a427a01924bf1bad493f14d5bef848b3d
-# End Generation Here
+.env.*
+
+# Env files
+*.env
+*.env.*
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pycharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Environments
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# pytest
+.cache/
