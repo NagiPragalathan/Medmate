@@ -4,6 +4,11 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.utils.timezone import now
+from gridfs import GridFS
+from pymongo import MongoClient
+
+
+
 class Notification(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -111,7 +116,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.username} - {self.email}"
-    
+
 
     
 class EProduct(models.Model):
@@ -125,3 +130,14 @@ class EProduct(models.Model):
 
     def __str__(self):
         return self.product_name
+    
+class PatientDocument(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    file_gridfs_id = models.CharField(max_length=255, blank=True)
+    file_content = models.TextField(blank=True)
+    summary = models.TextField(blank=True)
+    last_updated_file = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Document ID: {self.id}, User: {self.user.username}"

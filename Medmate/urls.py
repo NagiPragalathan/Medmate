@@ -56,6 +56,10 @@ Home = [
 
 Ocr = [
     path('ocr', extract_text, name='ocr'),
+    path('download_file/<uuid:document_id>', download_file, name='download_file'),
+    path('delete_file/<uuid:document_id>', delete_file, name='delete_file'),
+    path('api/latest-notification-time/', get_latest_notification_time, name='latest-notification-time'),
+
 ]
 
 admin_ = [

@@ -1,4 +1,3 @@
-<!-- upload_image.html -->
 {% extends 'baseindex/index.html' %}
 {% block content %}
 <!DOCTYPE html>
@@ -7,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Image</title>
+    <title>Upload PDF</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
@@ -25,39 +24,32 @@
             background-color: #fff;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 40%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 20px;
+        }
+
+        p{
+            color:black;
         }
 
         h1 {
             color: #333;
+            margin-bottom: 20px;
         }
 
         form {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         input[type="file"] {
-            margin-bottom: 10px;
             display: none; /* Hide the default file input */
         }
 
-        .drop-area {
-            border: 2px dashed #007bff;
-            padding: 20px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .drop-area:hover {
-            background-color: #f0f8ff;
-        }
-
-        .file-display-area {
-            margin-top: 10px;
-        }
-
-        button[type="submit"] {
+        .file-label {
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
@@ -65,131 +57,149 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-bottom: 10px;
         }
 
-        button[type="submit"]:hover {
+        .file-label:hover {
             background-color: #0056b3;
         }
+
+        .file-display-area {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .documents-list {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .document-item {
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .document-item h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        .document-item p, .document-item pre {
+            margin: 0 0 10px;
+        }
+
+        .document-item pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .document-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .document-item a:hover {
+            text-decoration: underline;
+        }
+
+        .document-item .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .document-item .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .file-label, .delete-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .file-label {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .document-item {
+                padding: 10px;
+            }
+
+            .document-item h3 {
+                font-size: 16px;
+            }
+
+            .document-item p, .document-item pre {
+                font-size: 14px;
+            }
+        }
     </style>
-
-<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-
-	<link rel="stylesheet" href=" {% static 'assets/css/chat.css' %} ">
-
-
 </head>
 <body>
-    <div class="container" >
-        <h1>Upload Image</h1>
+    <div class="container">
+        <h1>Upload PDF</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="drop-area" id="dropArea" style="color: rgb(166, 162, 162);">
-                <p>Drag and drop files here or click to select files</p>
-            </div>
-            <input type="file" name="image" id="fileInput">
-            <div class="file-display-area" id="fileDisplayArea"></div>
-            <button type="submit">Upload</button>
+            <label for="fileInput" class="file-label">Select PDF File</label>
+            <input type="file" name="pdf" id="fileInput" accept="application/pdf">
+            <div class="file-display-area" id="fileDisplayArea">No file selected</div>
+            <button type="submit" class="file-label">Upload</button>
         </form>
+
+        <div class="documents-list">
+            <h2>Uploaded Documents</h2>
+            {% for document in documents %}
+            <div class="document-item">
+                <h3>Document ID: {{ document.id }}</h3>
+                <p><strong>User:</strong> {{ document.user.username }}</p>
+                <p><strong>Summary:</strong> {{ document.summary }}</p>
+                <pre><strong>Extracted Text:</strong> {{ document.file_content }}</pre>
+                <p><strong>Last Updated:</strong> {{ document.last_updated_file }}</p>
+                <a href="{% url 'download_file' document.id %}">Download File</a>
+                <form method="post" action="{% url 'delete_file' document.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">Delete</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <script>
-        const dropArea = document.getElementById('dropArea');
         const fileInput = document.getElementById('fileInput');
         const fileDisplayArea = document.getElementById('fileDisplayArea');
 
-        // Prevent default behavior for file input
-        dropArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropArea.classList.add('active');
-        });
-
-        // Highlight drop area when file is dragged over
-        dropArea.addEventListener('dragenter', () => {
-            dropArea.classList.add('active');
-        });
-
-        // Unhighlight drop area when file is dragged out
-        dropArea.addEventListener('dragleave', () => {
-            dropArea.classList.remove('active');
-        });
-
-        // Handle dropped files
-        dropArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropArea.classList.remove('active');
-
-            const files = e.dataTransfer.files;
-            if (files.length) {
-                fileInput.files = files;
-                displayFiles(files);
-            }
-        });
-
-        // Handle file selection via file input
         fileInput.addEventListener('change', () => {
             const files = fileInput.files;
             displayFiles(files);
         });
 
-        // Display file names
         function displayFiles(files) {
-            fileDisplayArea.innerHTML = '';
-            for (const file of files) {
-                const div = document.createElement('div');
-                div.textContent = file.name;
-                fileDisplayArea.appendChild(div);
+            if (files.length) {
+                fileDisplayArea.textContent = files[0].name;
+            } else {
+                fileDisplayArea.textContent = 'No file selected';
             }
         }
     </script>
-
-<div class="chat-bar-collapsible">
-    <button style="background-color: #80d0c7;" id="chat-button" type="button" class="collapsible">Chat with us!
-        <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
-    </button>
-
-    <div class="content">
-        <div class="full-chat-block" style="width:100%;">
-            <!-- Message Container -->
-            <div class="outer-container">
-                <div class="chat-container">
-                    <!-- Messages -->
-                    <div id="chatbox">
-                        <h5 id="chat-timestamp"></h5>
-                        <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
-                    </div>
-
-                    <!-- User input box -->
-                    <div class="chat-bar-input-block">
-                        <div id="userInput">
-                            <input id="textInput" class="input-box" type="text" name="msg"
-                                placeholder="Tap 'Enter' to send a message">
-                            <p></p>
-                        </div>
-
-                        <div class="chat-bar-icons">
-                            <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
-                                onclick="heartButton()"></i>
-                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
-                                onclick="sendButton()"></i>
-                        </div>
-                    </div>
-
-                    <div id="chat-bar-bottom">
-                        <p></p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src=" {% static 'scripts/responses.js' %} "></script>
-<script src=" {% static 'scripts/chat.js' %} "></script>
-
 </html>
-{% endblock %} 
-
+{% endblock %}

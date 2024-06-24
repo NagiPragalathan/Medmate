@@ -4,7 +4,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest
 from django.core.mail import send_mail
-
+from django.http import JsonResponse
+from django.utils.timezone import localtime, now
 
 def add_notification(request):
     datas = Notification.objects.filter(user=request.user).order_by('-last_updated_time')
@@ -122,3 +123,15 @@ def messages(request):
 def consultmsg(request):
         return render(request, 'messages/consult.html')
 
+
+def get_latest_notification_time(request):
+    try:
+        latest_notification = Notification.objects.filter(user=request.user)[::-1][0]
+        local_notify_time = localtime(latest_notification.notify_time)  # Convert to local time
+        print(latest_notification.notify_time, local_notify_time, "---------------", local_notify_time.isoformat())
+        response_data = {
+            'notify_time': local_notify_time.isoformat()  # Convert to ISO format for JSON serialization
+        }
+        return JsonResponse(response_data)
+    except Notification.DoesNotExist:
+        return JsonResponse({'error': 'No notifications found'}, status=404)
