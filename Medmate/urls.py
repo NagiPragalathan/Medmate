@@ -109,6 +109,7 @@ e_commerse = [
         path('profile/', profile, name='profile'),
         path('calendar/', calendar, name='calendar'),
         path('create_or_update_user_profile', create_or_update_user_profile, name='create_or_update_user_profile'),
+        path('ambulance',Ambulance,name='Ambulance'),
 
 ]
 
@@ -138,6 +139,7 @@ Messages=[
         path('messages',messages,name='messages'),
         path('consultmsg',consultmsg,name='consultmsg'),
 ]
+
 EProducts = [
     path('add_product', add_product, name='add_product'),
     path('list_product', list_products, name='list_products'),
@@ -161,4 +163,5 @@ urlpatterns.extend(ratingurl)
 urlpatterns.extend(Messages)
 urlpatterns.extend(heart_rate)
 urlpatterns.extend(EProducts)
+
 
