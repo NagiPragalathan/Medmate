@@ -25,7 +25,7 @@ function cleanText(inputText) {
             const formData = new FormData();
             formData.append('image', file);
             formData.append('text', input);
-            fetch('/upload_image', {
+            fetch('https://free-frindly-chat-bot.vercel.app/ask', {
                 method: 'POST',
                 body: formData,
                 headers: {
