@@ -1,10 +1,7 @@
 #!/bin/bash
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Collect static files
-python3.9 manage.py collectstatic --noinput
-
-# Apply database migrations
-python3.9 manage.py migrate
+chmod +x build_files.sh
+echo "starting install..."
+python3.12 -m pip install -r requirements.txt
+python3.12 manage.py collectstatic --noinput
+python3.12 manage.py migrate
+echo "end install-----------------------"
