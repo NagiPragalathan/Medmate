@@ -32,3 +32,13 @@ def signup_view(request):
         else:
             return render(request, 'Auth/signup.html', {'error': 'Signup failed'})
     return render(request, 'Auth/signup.html')
+
+
+# views.py
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')  # Redirect to login page after logout
+
